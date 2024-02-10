@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\AERSP 424 Local\Project\AERSP424_Project\build\CMakeFiles\6dbe0a1b5f3afaed34a7711ec3db7a3a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6F5F038B-87F7-3EE4-A416-9A3DA10A0549}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

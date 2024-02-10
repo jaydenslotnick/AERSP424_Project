@@ -1,0 +1,10 @@
+^C:\AERSP 424 LOCAL\PROJECT\AERSP424_PROJECT\BUILD\CMAKEFILES\6DBE0A1B5F3AFAED34A7711EC3DB7A3A\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/AERSP 424 Local/Project/AERSP424_Project" "-BC:/AERSP 424 Local/Project/AERSP424_Project/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/AERSP 424 Local/Project/AERSP424_Project/build/Fantasy_Football_Mock_Draft_Simulator.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
