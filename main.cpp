@@ -5,7 +5,9 @@
 
 int main()
 {
-	operate();
+	ranking myRanking;
+
+	myRanking.operate();
 
 	return 0;
 }
