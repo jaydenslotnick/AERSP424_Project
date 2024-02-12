@@ -9,6 +9,9 @@
     <ClInclude Include="C:\AERSP 424 Local\Project\AERSP424_Project\Ranking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\AERSP 424 Local\Project\AERSP424_Project\League.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\AERSP 424 Local\Project\AERSP424_Project\CMakeLists.txt" />
