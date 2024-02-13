@@ -1,6 +1,6 @@
-^C:\AERSP 424 LOCAL\PROJECT\AERSP424_PROJECT\BUILD\CMAKEFILES\6DBE0A1B5F3AFAED34A7711EC3DB7A3A\GENERATE.STAMP.RULE
+^C:\USERS\PJGLY\DOWNLOADS\SPRING 2024\AERSP 424\FINAL PROJECT\AERSP424_PROJECT\BUILD\CMAKEFILES\5A03613DE720227D13937B149F74F184\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/AERSP 424 Local/Project/AERSP424_Project" "-BC:/AERSP 424 Local/Project/AERSP424_Project/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/AERSP 424 Local/Project/AERSP424_Project/build/Fantasy_Football_Mock_Draft_Simulator.sln"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project" "-BC:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/Fantasy_Football_Mock_Draft_Simulator.sln"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
