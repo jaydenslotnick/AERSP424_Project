@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\main.cpp">
+    <ClCompile Include="C:\AERSP 424 Local\Project\AERSP424_Project\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\Ranking.h">
+    <ClInclude Include="C:\AERSP 424 Local\Project\AERSP424_Project\Ranking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\League.h">
+    <ClInclude Include="C:\AERSP 424 Local\Project\AERSP424_Project\League.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\CMakeLists.txt" />
+    <CustomBuild Include="C:\AERSP 424 Local\Project\AERSP424_Project\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{37CA4894-C30D-385A-9D24-1818D9DF0E31}</UniqueIdentifier>
+      <UniqueIdentifier>{80C32FCD-B6A4-3BEC-B1DD-DF853B4A3087}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{834CD4E6-401D-3FDF-A831-D2C29290CFF9}</UniqueIdentifier>
+      <UniqueIdentifier>{F168B7BA-EDA5-320D-ACF3-3AFE17627BE0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
