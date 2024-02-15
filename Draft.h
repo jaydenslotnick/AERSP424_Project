@@ -23,9 +23,20 @@ public:
         std::ifstream rb("RB.txt");
         std::ifstream wr("WR.txt");
         std::ifstream te("TE.txt");
+        
+
+        // creates and opens empty temp files
         std::ofstream Empty_Top_300;
+        std::ofstream Empty_qb;
+        std::ofstream Empty_rb;
+        std::ofstream Empty_wr;
+        std::ofstream Empty_te;
 
         Empty_Top_300.open("Empty_Top_300.txt");
+        Empty_qb.open("Empty_qb.txt");
+        Empty_rb.open("Empty_rb.txt");
+        Empty_wr.open("Empty_wr.txt");
+        Empty_te.open("Empty_te.txt");
 
 
         // Verifies that the file can be opened
@@ -34,15 +45,35 @@ public:
         }
 
 
-        // Copy contents of top 300 rankings to an empty file
+        // Copy contents of all files to the temp files
         char copy;
         while (NFL_Top_300.get(copy)) {
             Empty_Top_300.put(copy);
         }
 
+        while (qb.get(copy)) {
+            Empty_qb.put(copy);
+        }
+
+        while (rb.get(copy)) {
+            Empty_rb.put(copy);
+        }
+
+        while (wr.get(copy)) {
+            Empty_wr.put(copy);
+        }
+
+        while (te.get(copy)) {
+            Empty_te.put(copy);
+        }
+
 
         // closes nfl top 300 file
         Empty_Top_300.close();
+        Empty_qb.close();
+        Empty_rb.close();
+        Empty_wr.close();
+        Empty_te.close();
         NFL_Top_300.close();
         qb.close();
         rb.close();
@@ -51,23 +82,18 @@ public:
 
 
 
-        // deletes the temporary top 300 file 
+        // deletes the temporary files
         const char* delete_empty = "Empty_Top_300.txt"; 
+        const char* delete_empty_qb = "Empty_qb.txt";
+        const char* delete_empty_rb = "Empty_rb.txt";
+        const char* delete_empty_wr = "Empty_wr.txt"; 
+        const char* delete_empty_te = "Empty_te.txt";
 
-        // tracks to see if the file was actually deleted
-        int result = std::remove(delete_empty);
-
-        // Prints result of the deletion
-        if (result != 0) {
-            // If deletion fails, print an error message
-            perror("Error deleting file");
-        }
-
-        else {
-            // If deletion succeeds, print a success message
-            //std::cout << "File deleted successfully." << std::endl; // add if needed
-        }
-
+        std::remove(delete_empty);
+        std::remove(delete_empty_qb);
+        std::remove(delete_empty_rb);
+        std::remove(delete_empty_wr);
+        std::remove(delete_empty_te);
 
     };
 
