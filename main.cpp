@@ -14,21 +14,12 @@ int main()
 	test.operate();
 
 
-	// league name and players
-
-	// declares input variables
-	std::string leagueName;
-	int numMembers;
-
-	// asks user for an input
-	std::cout << "Enter league name: " << std::endl;
-	std::cin >> leagueName;
-	std::cout << "Enter number of members: " << std::endl;
-	std::cin >> numMembers;
-
 	//creates league and calls function to add members
-	League myLeague(leagueName, numMembers);
-	myLeague.addMembers();
+	League myLeague("", 0);
+	myLeague.getLeagueInfo();
+	std::vector<std::string> leagueMembers = myLeague.addMembers();
+
+
 
 	// testing draft file
 
