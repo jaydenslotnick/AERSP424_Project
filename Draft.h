@@ -8,15 +8,21 @@ class draft {
 private:
     std::string player;
     int lineNumber = 0;
+    std::vector<std::string> leagueMembers;
+    int qbLimit;
+    int rbLimit;
+    int wrLimit;
+    int teLimit;
     
 
 public:
 
+    draft(const std::vector<std::string> members) : leagueMembers(members) {}
+
 
     void operate() {
       
-
-
+        
         // opens the NFL Top 300 file
         std::ifstream NFL_Top_300("NFL_TOP_300.txt");
         std::ifstream qb("QB.txt");
@@ -67,6 +73,46 @@ public:
             Empty_te.put(copy);
         }
 
+
+        std::cout << "Enter QB Limit: " << std::endl;
+        std::cin >> qbLimit;
+
+
+        std::cout << "Enter RB Limit: " << std::endl;
+        std::cin >> rbLimit;
+
+        std::cout << "Enter WR Limit: " << std::endl;
+        std::cin >> wrLimit;
+
+        std::cout << "Enter TE Limit: " << std::endl;
+        std::cin >> teLimit;
+
+
+        // all draft stuff here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // End of draft stuff
 
         // closes nfl top 300 file
         Empty_Top_300.close();

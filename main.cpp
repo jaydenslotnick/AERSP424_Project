@@ -23,7 +23,8 @@ int main()
 
 	// testing draft file
 
-	draft testDraft;
+	draft testDraft(leagueMembers);
+
 	testDraft.operate();
 
 
