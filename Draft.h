@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <array>
 #include <vector>
+#include <map>
 
 class draft {
 private:
@@ -16,6 +18,8 @@ private:
     int currentRound = 0;
     int roundLimit = 0;
     std::vector<std::string> draftOrder = leagueMembers;
+    std::map<std::string, std::vector<std::string>> top300;
+    std::string line;
     
 
 public:
@@ -27,18 +31,12 @@ public:
       
         
         // opens the NFL Top 300 file
-        std::ifstream NFL_Top_300("NFL_TOP_300.txt");
-        std::ifstream qb("QB.txt");
-        std::ifstream rb("RB.txt");
-        std::ifstream wr("WR.txt");
-        std::ifstream te("TE.txt");
+        std::ifstream NFL_Top_300("NFL_TOP_300.csv");
+        std::ifstream qb("QB.csv");
+        std::ifstream rb("RB.csv");
+        std::ifstream wr("WR.csv");
+        std::ifstream te("TE.csv");
 
-        // creates and opens empty temp files
-        std::ofstream Empty_Top_300("Empty_Top_300.txt");
-        std::ofstream Empty_qb("Empty_qb.txt");
-        std::ofstream Empty_rb("Empty_rb.txt");
-        std::ofstream Empty_wr("Empty_wr.txt");
-        std::ofstream Empty_te("Empty_te.txt");
 
         // Verifies that the file can be opened
         if (!NFL_Top_300.is_open() || !qb.is_open() || !rb.is_open() || !wr.is_open() || !te.is_open()) {
@@ -46,41 +44,60 @@ public:
         }
 
 
-        // Copy contents of all files to the temp files
-        char copy;
-        while (NFL_Top_300.get(copy)) {
-            Empty_Top_300.put(copy);
+
+        while (std::getline(NFL_Top_300, line)) { // Read each line from the file
+            std::istringstream iss(line);
+            std::vector<std::string> columns;
+            std::string column;
+
+            // Split the line into columns
+            while (std::getline(iss, column, ',')) { // comma-separated values
+                columns.push_back(column);
+            }
+
+            if (columns.size() >= 2) { // Ensure there are at least two columns
+                // Use the first column as the key and the rest as the value
+                std::string key = columns[0];
+                columns.erase(columns.begin()); // Remove the first column
+                top300[key] = columns;
+            }
         }
 
-        while (qb.get(copy)) {
-            Empty_qb.put(copy);
+        // Printing the map
+        for (const auto& pair : top300) {
+            std::cout << "Player: " << pair.first << ", Position: ";
+            for (const auto& column : pair.second) {
+                std::cout << column << " ";
+            }
+            std::cout << std::endl;
         }
 
-        while (rb.get(copy)) {
-            Empty_rb.put(copy);
+        roundLimit = 10;
+        // Draft simulation
+        for (int round = 1; round <= roundLimit; ++round) {
+            std::cout << "Round " << round << ":\n";
+            if (round % 2 == 0) {
+                std::reverse(draftOrder.begin(), draftOrder.end());
+            }
+            for (const auto& team : draftOrder) {
+                // Use iterators to find the player by rank
+                auto it = top300.find(std::to_string(round));
+                if (it != top300.end()) {
+                    std::string selectedPlayer = it->second.front(); // First element is the player name
+                    std::cout << team << " selects: " << selectedPlayer << std::endl;
+                    it->second.erase(it->second.begin()); // Remove selected player
+                }
+                else {
+                    std::cerr << "Error: player not found for round " << round << std::endl;
+                }
+            }
         }
 
-        while (wr.get(copy)) {
-            Empty_wr.put(copy);
-        }
 
-        while (te.get(copy)) {
-            Empty_te.put(copy);
-        }
 
-        // closes nfl top 300 file
-        Empty_Top_300.close();
-        Empty_qb.close();
-        Empty_rb.close();
-        Empty_wr.close();
-        Empty_te.close();
 
-        // opens the NFL Top 300 file
-        std::ifstream Empty_Top_300_read("Empty_Top_300.txt");
-        std::ifstream Empty_qb_read("Empty_qb.txt");
-        std::ifstream Empty_rb_read("Empty_rb.txt");
-        std::ifstream Empty_wr_read("Empty_wr.txt");
-        std::ifstream Empty_te_read("Empty_te.txt");
+
+
 
         // not sure how we would implement this
         //std::cout << "Enter QB Limit: " << std::endl;
@@ -97,52 +114,51 @@ public:
         //std::cin >> teLimit;
 
         // Assigns values to the currentRound and roundLimit variables
-        int currentRound = 1;
+        //int currentRound = 1;
 
-        std::cout << "Enter number of rounds: " << std::endl;
-        std::cin >> roundLimit;
+        //std::cout << "Enter number of rounds: " << std::endl;
+        //std::cin >> roundLimit;
 
-        // Loops through the draft in a snake draft order
-        for (int round = 1; round <= roundLimit; ++round) {
-            std::cout << "Round " << round << ":\n";
-            if (round % 2 == 0)
-                std::reverse(draftOrder.begin(), draftOrder.end());
-            for (const auto& team : draftOrder) {
-                if (std::getline(Empty_Top_300_read, player))
-                    std::cout << team << " selects: " << player << std::endl;
-            }
-            ++currentRound;
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // End of draft stuff
-        // closes nfl top 300 file
-        Empty_Top_300_read.close();
-        Empty_qb_read.close();
-        Empty_rb_read.close();
-        Empty_wr_read.close();
-        Empty_te_read.close();
 
+        // close files
         NFL_Top_300.close();
         qb.close();
         rb.close();
         wr.close();
         te.close();
 
-
-
-        // deletes the temporary files
-        const char* delete_empty = "Empty_Top_300.txt"; 
-        const char* delete_empty_qb = "Empty_qb.txt";
-        const char* delete_empty_rb = "Empty_rb.txt";
-        const char* delete_empty_wr = "Empty_wr.txt"; 
-        const char* delete_empty_te = "Empty_te.txt";
-
-        std::remove(delete_empty);
-        std::remove(delete_empty_qb);
-        std::remove(delete_empty_rb);
-        std::remove(delete_empty_wr);
-        std::remove(delete_empty_te);
 
     };
 
