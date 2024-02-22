@@ -18,14 +18,14 @@ public:
     };
 
 
-    // asks for user input of the league
+    // Asks for user input of the league
     void getLeagueInfo() {
         std::cout << "Enter league name: " << std::endl;
-        std::cin >> leagueName;
+        std::cin.ignore(); // Ignore the newline character left in the buffer
+        std::getline(std::cin, leagueName); // Allowing the league name to be multiple words
 
-        std::cout << "Enter numner of members: " << std::endl;
+        std::cout << "Enter number of members: " << std::endl;
         std::cin >> numMembers;
-
     }
 
 
