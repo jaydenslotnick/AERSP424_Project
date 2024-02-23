@@ -24,7 +24,6 @@ int main()
 	// testing draft file
 
 	draft testDraft(leagueMembers);
-
 	testDraft.operate();
 
 

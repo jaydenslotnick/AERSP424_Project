@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 
+
 class draft {
 private:
     std::string player;
@@ -17,19 +18,20 @@ private:
     int teLimit = 0;
     int currentRound = 0;
     int roundLimit = 0;
-    std::vector<std::string> draftOrder = leagueMembers;
-    std::map<std::string, std::vector<std::string>> top300;
+
+    std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
-    
+
+
+
 
 public:
 
     draft(const std::vector<std::string> members) : leagueMembers(members) {}
-
+    std::vector<std::string> draftOrder = leagueMembers;
 
     void operate() {
-      
-        
+
         // opens the NFL Top 300 file
         std::ifstream NFL_Top_300("NFL_TOP_300.csv");
         std::ifstream qb("QB.csv");
@@ -44,35 +46,27 @@ public:
         }
 
 
-
-        while (std::getline(NFL_Top_300, line)) { // Read each line from the file
+        // copies the map into the top300
+        std::string line;
+        while (std::getline(NFL_Top_300, line)) {
             std::istringstream iss(line);
             std::vector<std::string> columns;
             std::string column;
 
             // Split the line into columns
-            while (std::getline(iss, column, ',')) { // comma-separated values
+            while (std::getline(iss, column, ',')) {
                 columns.push_back(column);
             }
 
-            if (columns.size() >= 2) { // Ensure there are at least two columns
-                // Use the first column as the key and the rest as the value
-                std::string key = columns[0];
-                columns.erase(columns.begin()); // Remove the first column
-                top300[key] = columns;
+            if (columns.size() >= 2) {
+                // Use the first column as the player name and the rest as their information
+                top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
             }
         }
 
-        // Printing the map
-        for (const auto& pair : top300) {
-            std::cout << "Player: " << pair.first << ", Position: ";
-            for (const auto& column : pair.second) {
-                std::cout << column << " ";
-            }
-            std::cout << std::endl;
-        }
 
-        roundLimit = 10;
+
+        roundLimit = 10; // change this to a user input
         // Draft simulation
         for (int round = 1; round <= roundLimit; ++round) {
             std::cout << "Round " << round << ":\n";
@@ -80,16 +74,18 @@ public:
                 std::reverse(draftOrder.begin(), draftOrder.end());
             }
             for (const auto& team : draftOrder) {
+                int teamIndex = 0;
                 // Use iterators to find the player by rank
-                auto it = top300.find(std::to_string(round));
+                auto it = top300.begin();
                 if (it != top300.end()) {
-                    std::string selectedPlayer = it->second.front(); // First element is the player name
+                    std::string selectedPlayer = it->first; // First element is the player name
                     std::cout << team << " selects: " << selectedPlayer << std::endl;
-                    it->second.erase(it->second.begin()); // Remove selected player
+                    top300.erase(it);
                 }
                 else {
                     std::cerr << "Error: player not found for round " << round << std::endl;
                 }
+                ++teamIndex;
             }
         }
 
@@ -119,37 +115,6 @@ public:
         //std::cout << "Enter number of rounds: " << std::endl;
         //std::cin >> roundLimit;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // End of draft stuff
 
         // close files
@@ -161,5 +126,6 @@ public:
 
 
     };
+
 
 };
