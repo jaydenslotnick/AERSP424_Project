@@ -22,12 +22,20 @@ private:
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
 
-
-
+    // create a map of maps to store each drafters picks
+        // use bool to make sure the player is only listed once per team
+    std::map<std::string, std::map<std::string, bool>> teamPlayerMap;
 
 public:
 
-    draft(const std::vector<std::string> members) : leagueMembers(members) {}
+    draft(const std::vector<std::string>& members) : leagueMembers(members) 
+    {
+        for (const auto& team : leagueMembers)
+        {
+            teamPlayerMap[team] = std::map<std::string, bool>();
+        }
+    }
+
     std::vector<std::string> draftOrder = leagueMembers;
 
     void operate() {
@@ -69,7 +77,7 @@ public:
         roundLimit = 10; // change this to a user input
         // Draft simulation
         for (int round = 1; round <= roundLimit; ++round) {
-            std::cout << "Round " << round << ":\n";
+            std::cout << "\nRound " << round << ":\n";
             if (round % 2 == 0) {
                 std::reverse(draftOrder.begin(), draftOrder.end());
             }
@@ -80,6 +88,7 @@ public:
                 if (it != top300.end()) {
                     std::string selectedPlayer = it->first; // First element is the player name
                     std::cout << team << " selects: " << selectedPlayer << std::endl;
+                    teamPlayerMap[team][selectedPlayer] = true;   // updates the team map for each team
                     top300.erase(it);
                 }
                 else {
@@ -87,10 +96,20 @@ public:
                 }
                 ++teamIndex;
             }
+            std::cout << std::endl;     // used to make output nicer and more read-able
         }
 
-
-
+        // output each drafters team
+        std::cout << "\nTeam List\n" << std::endl;
+        for (const auto& teamEntry : teamPlayerMap)
+        {
+            std::cout << "Team: " << teamEntry.first << std::endl;          // outputs team name
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                std::cout << playerEntry.first << std::endl;            // outputs team players
+            }
+            std::cout << std::endl;     // used to make output nicer and more read-able
+        }
 
 
 

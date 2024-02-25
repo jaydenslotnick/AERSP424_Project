@@ -14,14 +14,13 @@ private:
 public:
     // Constructor
     League(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
-        std::cout << "League created! " << std::endl;
+        std::cout << "\nLeague created! " << std::endl;
     };
 
 
     // Asks for user input of the league
     void getLeagueInfo() {
         std::cout << "Enter league name: " << std::endl;
-        std::cin.ignore(); // Ignore the newline character left in the buffer
         std::getline(std::cin, leagueName); // Allowing the league name to be multiple words
 
         std::cout << "Enter number of members: " << std::endl;
@@ -39,7 +38,7 @@ public:
             leagueMembers[i] = name;
         }
 
-        std::cout << "Welcome to " << leagueName << " Fantasy Football League\n";
+        std::cout << "\nWelcome to " << leagueName << " Fantasy Football League\n";
         std::cout << "Fantasy Football League Members:\n";
 
         for (int i = 0; i < numMembers; ++i) {
