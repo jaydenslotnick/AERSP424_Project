@@ -19,6 +19,9 @@ private:
     int currentRound = 0;
     int roundLimit = 0;
     int tempPlayer;
+    int playerCount = 1;
+    char morePlayers;
+    int numPlayers;
 
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
@@ -43,7 +46,7 @@ public:
     void operate() {
 
         std::cout << "" << std::endl;
-        std::cout << "Enter your Team: " << std::endl;
+        std::cout << "Enter your Team (name): " << std::endl;
         std::cin >> ownTeam;
         std::cout << "" << std::endl;
 
@@ -88,27 +91,60 @@ public:
         // Draft simulation
         for (int round = 1; round <= roundLimit; ++round) {
             std::cout << "\nRound " << round << ":\n";
+
+            // reverses order to represent a snake draft
             if (round % 2 == 0) {
                 std::reverse(draftOrder.begin(), draftOrder.end());
             }
+
+            // Goes through draft logic for each team
             for (const auto& team : draftOrder) {
                 int teamIndex = 0;
 
+                // goes user control over their own draft slot
                 if (team == ownTeam) {
                     std::cout << "" << std::endl;
 
-                    std::cout << "Top 10 players remaining: " << std::endl;
 
+                    // default outputs top 10 players remaining
+                    std::cout << "Top 10 players remaining: " << std::endl;
                     for (int i = 0; i < 10; ++i) {
-                        std::cout << i+1 << ". " << top300[i].first << top300[i].second[0] << std::endl;
+                        std::cout << i+1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
                     }
 
+
+                    // asks users if they want to see any more players
                     std::cout << "" << std::endl;
+                    std::cout << "Do you wish to see more players? (y/n)" << std::endl;
+                    std::cin >> morePlayers;
+
+                    // will run until user does not want to see any more new players
+                    while (morePlayers == 'y')
+                    {
+                        std::cout << "Enter number of players you would like to see: " << std::endl;
+                        std::cin >> numPlayers;
+                        std::cout << "Top " << numPlayers <<  " players remaining: " << std::endl;
+
+                        for (int i = 0; i < numPlayers; ++i) {
+                            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
+                        }
+                        std::cout << "" << std::endl;
+                        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
+                        std::cin >> morePlayers;
+                    }
+
+                    // gets user inputted pick
+                    std::cout << "" << std::endl;
+                    std::cout << "It is your turn to pick!" << std::endl;
                     std::cout << "Enter desired player (number only): " << std::endl;
                     std::cin >> tempPlayer;
-                    std::cout << team << " selects: " << top300[tempPlayer - 1].first << std::endl;
+                    std::cout << "" << std::endl;
+                    std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer - 1].first << ", " << top300[tempPlayer - 1].second[0] << std::endl;
                     teamPlayerMap[team][top300[tempPlayer - 1].first] = true;
                     top300.erase(top300.begin() + tempPlayer - 1);
+
+                    // increases overall pick nymber
+                    ++playerCount;
                 }
 
                 else {
@@ -116,9 +152,10 @@ public:
                     auto it = top300.begin();
                     if (it != top300.end()) {
                         std::string selectedPlayer = it->first; // First element is the player name
-                        std::cout << team << " selects: " << selectedPlayer << std::endl;
+                        std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = true;   // updates the team map for each team
                         top300.erase(it);
+                        ++playerCount;
                     }
                     else {
                         std::cerr << "Error: player not found for round " << round << std::endl;
