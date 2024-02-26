@@ -18,9 +18,11 @@ private:
     int teLimit = 0;
     int currentRound = 0;
     int roundLimit = 0;
+    int tempPlayer;
 
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
+    std::string ownTeam;
 
     // create a map of maps to store each drafters picks
         // use bool to make sure the player is only listed once per team
@@ -39,6 +41,11 @@ public:
     std::vector<std::string> draftOrder = leagueMembers;
 
     void operate() {
+
+        std::cout << "" << std::endl;
+        std::cout << "Enter your Team: " << std::endl;
+        std::cin >> ownTeam;
+        std::cout << "" << std::endl;
 
         // opens the NFL Top 300 file
         std::ifstream NFL_Top_300("NFL_TOP_300.csv");
@@ -72,9 +79,12 @@ public:
             }
         }
 
+        std::cout << "Enter Round Limit" << std::endl;
+        std::cin >> roundLimit;
+        std::cout << "\n";
 
 
-        roundLimit = 10; // change this to a user input
+
         // Draft simulation
         for (int round = 1; round <= roundLimit; ++round) {
             std::cout << "\nRound " << round << ":\n";
@@ -83,16 +93,36 @@ public:
             }
             for (const auto& team : draftOrder) {
                 int teamIndex = 0;
-                // Use iterators to find the player by rank
-                auto it = top300.begin();
-                if (it != top300.end()) {
-                    std::string selectedPlayer = it->first; // First element is the player name
-                    std::cout << team << " selects: " << selectedPlayer << std::endl;
-                    teamPlayerMap[team][selectedPlayer] = true;   // updates the team map for each team
-                    top300.erase(it);
+
+                if (team == ownTeam) {
+                    std::cout << "" << std::endl;
+
+                    std::cout << "Top 10 players remaining: " << std::endl;
+
+                    for (int i = 0; i < 10; ++i) {
+                        std::cout << i+1 << ". " << top300[i].first << top300[i].second[0] << std::endl;
+                    }
+
+                    std::cout << "" << std::endl;
+                    std::cout << "Enter desired player (number only): " << std::endl;
+                    std::cin >> tempPlayer;
+                    std::cout << team << " selects: " << top300[tempPlayer - 1].first << std::endl;
+                    teamPlayerMap[team][top300[tempPlayer - 1].first] = true;
+                    top300.erase(top300.begin() + tempPlayer - 1);
                 }
+
                 else {
-                    std::cerr << "Error: player not found for round " << round << std::endl;
+                    // Use iterators to find the player by rank
+                    auto it = top300.begin();
+                    if (it != top300.end()) {
+                        std::string selectedPlayer = it->first; // First element is the player name
+                        std::cout << team << " selects: " << selectedPlayer << std::endl;
+                        teamPlayerMap[team][selectedPlayer] = true;   // updates the team map for each team
+                        top300.erase(it);
+                    }
+                    else {
+                        std::cerr << "Error: player not found for round " << round << std::endl;
+                    }
                 }
                 ++teamIndex;
             }
