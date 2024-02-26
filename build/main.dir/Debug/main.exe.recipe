@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\AERSP 424 Local\Project\AERSP424_Project\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\AERSP 424 Local\Project\AERSP424_Project\build\Debug\main.exe</FullPath>
+      <FullPath>C:\Users\pjgly\Downloads\Spring 2024\AERSP 424\Final Project\AERSP424_Project\build\Debug\main.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

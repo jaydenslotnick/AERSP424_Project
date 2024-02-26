@@ -9,12 +9,13 @@ private:
     int numMembers;
     std::string leagueName;
     std::vector<std::string> leagueMembers;
-    
+    std::string* ptrToLeague = &leagueName;         // creates a pointer to the memory address of the league name
 
 public:
     // Constructor
     League(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
-        std::cout << "\nLeague created! " << std::endl;
+        
+        std::cout << "\nLeague created with ID#: " << ptrToLeague << std::endl;
     };
 
 
