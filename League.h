@@ -46,10 +46,10 @@ public:
         bool validNumMembers = false;        
         while (!validNumMembers)
         {
-            std::cout << "Enter number of members (up to 10): " << std::endl;
+            std::cout << "Enter number of members (up to 16): " << std::endl;
             std::cin >> numMembers;
 
-            if (std::cin.fail() || numMembers <= 0 || numMembers > 10)
+            if (std::cin.fail() || numMembers <= 0 || numMembers > 16)
             {
                 std::cout << "Please enter a positive integer up to 10." << std::endl;
                 std::cin.clear();       // clear the error flag

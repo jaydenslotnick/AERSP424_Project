@@ -29,7 +29,7 @@ private:
 
     // create a map of maps to store each drafters picks
         // use bool to make sure the player is only listed once per team
-    std::map<std::string, std::map<std::string, bool>> teamPlayerMap;
+    std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
 
 public:
 
@@ -37,7 +37,7 @@ public:
     {
         for (const auto& team : leagueMembers)
         {
-            teamPlayerMap[team] = std::map<std::string, bool>();
+            teamPlayerMap[team] = std::map<std::string, std::string>();
         }
     }
 
@@ -140,7 +140,7 @@ public:
                     std::cin >> tempPlayer;
                     std::cout << "" << std::endl;
                     std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer - 1].first << ", " << top300[tempPlayer - 1].second[0] << std::endl;
-                    teamPlayerMap[team][top300[tempPlayer - 1].first] = true;
+                    teamPlayerMap[team][top300[tempPlayer - 1].first] = top300[tempPlayer - 1].second[0];
                     top300.erase(top300.begin() + tempPlayer - 1);
 
                     // increases overall pick nymber
@@ -153,7 +153,7 @@ public:
                     if (it != top300.end()) {
                         std::string selectedPlayer = it->first; // First element is the player name
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
-                        teamPlayerMap[team][selectedPlayer] = true;   // updates the team map for each team
+                        teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it);
                         ++playerCount;
                     }
@@ -166,14 +166,43 @@ public:
             std::cout << std::endl;     // used to make output nicer and more read-able
         }
 
+
+
+
+
         // output each drafters team
         std::cout << "\nTeam List\n" << std::endl;
         for (const auto& teamEntry : teamPlayerMap)
         {
+
             std::cout << "Team: " << teamEntry.first << std::endl;          // outputs team name
             for (const auto& playerEntry : teamEntry.second)
             {
-                std::cout << playerEntry.first << std::endl;            // outputs team players
+                if (playerEntry.second == "QB")
+                {
+                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                if (playerEntry.second == "RB")
+                {
+                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                if (playerEntry.second == "WR")
+                {
+                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                if (playerEntry.second == "TE")
+                {
+                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                }
             }
             std::cout << std::endl;     // used to make output nicer and more read-able
         }
