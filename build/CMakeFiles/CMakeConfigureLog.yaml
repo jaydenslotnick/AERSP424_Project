@@ -24,9 +24,9 @@ events:
       The output was:
       0
       MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-      Build started 2/26/2024 7:11:11 PM.
+      Build started 2/27/2024 10:21:40 AM.
       
-      Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -39,7 +39,7 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -47,13 +47,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.98
+      Time Elapsed 00:00:01.52
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -61,7 +61,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/3.28.1/CompilerIdC/CompilerIdC.exe
+        C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/3.28.1/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "message-v1"
@@ -79,9 +79,9 @@ events:
       The output was:
       0
       MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-      Build started 2/26/2024 7:11:12 PM.
+      Build started 2/27/2024 10:21:42 AM.
       
-      Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -94,7 +94,7 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -102,7 +102,7 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      Done Building Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\3.28.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
@@ -116,7 +116,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/3.28.1/CompilerIdCXX/CompilerIdCXX.exe
+        C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/3.28.1/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "try_compile-v1"
@@ -127,8 +127,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-t4g8fz"
-      binary: "C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-t4g8fz"
+      source: "C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-8vg0j8"
+      binary: "C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-8vg0j8"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -137,40 +137,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-t4g8fz'
+        Change Dir: 'C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-8vg0j8'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5d0ae.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7fbef.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-        Build started 2/26/2024 7:11:14 PM.
+        Build started 2/27/2024 10:21:43 AM.
         
-        Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4g8fz\\cmTC_5d0ae.vcxproj" on node 1 (default targets).
+        Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8vg0j8\\cmTC_7fbef.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_5d0ae.dir\\Debug\\".
+          Creating directory "cmTC_7fbef.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4g8fz\\Debug\\".
-          Creating directory "cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.tlog\\".
+          Creating directory "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8vg0j8\\Debug\\".
+          Creating directory "cmTC_7fbef.dir\\Debug\\cmTC_7fbef.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.tlog\\unsuccessfulbuild".
+          Creating "cmTC_7fbef.dir\\Debug\\cmTC_7fbef.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_7fbef.dir\\Debug\\cmTC_7fbef.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_5d0ae.dir\\Debug\\\\" /Fd"cmTC_5d0ae.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7fbef.dir\\Debug\\\\" /Fd"cmTC_7fbef.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33134 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_5d0ae.dir\\Debug\\\\" /Fd"cmTC_5d0ae.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7fbef.dir\\Debug\\\\" /Fd"cmTC_7fbef.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4g8fz\\Debug\\cmTC_5d0ae.exe" /INCREMENTAL /ILK:"cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-t4g8fz/Debug/cmTC_5d0ae.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-t4g8fz/Debug/cmTC_5d0ae.lib" /MACHINE:X64  /machine:x64 cmTC_5d0ae.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_5d0ae.vcxproj -> C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4g8fz\\Debug\\cmTC_5d0ae.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8vg0j8\\Debug\\cmTC_7fbef.exe" /INCREMENTAL /ILK:"cmTC_7fbef.dir\\Debug\\cmTC_7fbef.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-8vg0j8/Debug/cmTC_7fbef.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-8vg0j8/Debug/cmTC_7fbef.lib" /MACHINE:X64  /machine:x64 cmTC_7fbef.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_7fbef.vcxproj -> C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8vg0j8\\Debug\\cmTC_7fbef.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.tlog\\unsuccessfulbuild".
-          Touching "cmTC_5d0ae.dir\\Debug\\cmTC_5d0ae.tlog\\cmTC_5d0ae.lastbuildstate".
-        Done Building Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4g8fz\\cmTC_5d0ae.vcxproj" (default targets).
+          Deleting file "cmTC_7fbef.dir\\Debug\\cmTC_7fbef.tlog\\unsuccessfulbuild".
+          Touching "cmTC_7fbef.dir\\Debug\\cmTC_7fbef.tlog\\cmTC_7fbef.lastbuildstate".
+        Done Building Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8vg0j8\\cmTC_7fbef.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.83
+        Time Elapsed 00:00:00.74
         
       exitCode: 0
   -
@@ -182,8 +182,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-rb4ngb"
-      binary: "C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-rb4ngb"
+      source: "C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-uwek8c"
+      binary: "C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-uwek8c"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -192,40 +192,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-rb4ngb'
+        Change Dir: 'C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-uwek8c'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fea18.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_519f8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-        Build started 2/26/2024 7:11:15 PM.
+        Build started 2/27/2024 10:21:44 AM.
         
-        Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4ngb\\cmTC_fea18.vcxproj" on node 1 (default targets).
+        Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwek8c\\cmTC_519f8.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_fea18.dir\\Debug\\".
+          Creating directory "cmTC_519f8.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4ngb\\Debug\\".
-          Creating directory "cmTC_fea18.dir\\Debug\\cmTC_fea18.tlog\\".
+          Creating directory "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwek8c\\Debug\\".
+          Creating directory "cmTC_519f8.dir\\Debug\\cmTC_519f8.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_fea18.dir\\Debug\\cmTC_fea18.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_fea18.dir\\Debug\\cmTC_fea18.tlog\\unsuccessfulbuild".
+          Creating "cmTC_519f8.dir\\Debug\\cmTC_519f8.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_519f8.dir\\Debug\\cmTC_519f8.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_fea18.dir\\Debug\\\\" /Fd"cmTC_fea18.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_519f8.dir\\Debug\\\\" /Fd"cmTC_519f8.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33134 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_fea18.dir\\Debug\\\\" /Fd"cmTC_fea18.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_519f8.dir\\Debug\\\\" /Fd"cmTC_519f8.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4ngb\\Debug\\cmTC_fea18.exe" /INCREMENTAL /ILK:"cmTC_fea18.dir\\Debug\\cmTC_fea18.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-rb4ngb/Debug/cmTC_fea18.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/pjgly/Downloads/Spring 2024/AERSP 424/Final Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-rb4ngb/Debug/cmTC_fea18.lib" /MACHINE:X64  /machine:x64 cmTC_fea18.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_fea18.vcxproj -> C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4ngb\\Debug\\cmTC_fea18.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwek8c\\Debug\\cmTC_519f8.exe" /INCREMENTAL /ILK:"cmTC_519f8.dir\\Debug\\cmTC_519f8.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-uwek8c/Debug/cmTC_519f8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/AERSP 424 Local/Project/AERSP424_Project/build/CMakeFiles/CMakeScratch/TryCompile-uwek8c/Debug/cmTC_519f8.lib" /MACHINE:X64  /machine:x64 cmTC_519f8.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_519f8.vcxproj -> C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwek8c\\Debug\\cmTC_519f8.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_fea18.dir\\Debug\\cmTC_fea18.tlog\\unsuccessfulbuild".
-          Touching "cmTC_fea18.dir\\Debug\\cmTC_fea18.tlog\\cmTC_fea18.lastbuildstate".
-        Done Building Project "C:\\Users\\pjgly\\Downloads\\Spring 2024\\AERSP 424\\Final Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4ngb\\cmTC_fea18.vcxproj" (default targets).
+          Deleting file "cmTC_519f8.dir\\Debug\\cmTC_519f8.tlog\\unsuccessfulbuild".
+          Touching "cmTC_519f8.dir\\Debug\\cmTC_519f8.tlog\\cmTC_519f8.lastbuildstate".
+        Done Building Project "C:\\AERSP 424 Local\\Project\\AERSP424_Project\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uwek8c\\cmTC_519f8.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.95
+        Time Elapsed 00:00:00.73
         
       exitCode: 0
 ...
