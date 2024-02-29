@@ -5,6 +5,9 @@
 #include "League.h"
 #include "Draft.h"
 
+
+int draft::totalDrafts = 0;
+
 int main()
 {
 
@@ -22,10 +25,11 @@ int main()
 
 
 	// testing draft file
-
+	
 	draft testDraft(leagueMembers);
+	
 	testDraft.operate();
-
+	std::cout << "Number of drafts completed: " << draft::totalDrafts << std::endl;
 
 
 	return 0;

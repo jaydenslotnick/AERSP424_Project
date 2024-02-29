@@ -18,10 +18,10 @@ private:
     int teLimit = 0;
     int currentRound = 0;
     int roundLimit = 0;
-    int tempPlayer;
+    int tempPlayer = 0;
     int playerCount = 1;
-    char morePlayers;
-    int numPlayers;
+    char morePlayers = 0;
+    int numPlayers = 0;
 
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
@@ -31,7 +31,10 @@ private:
         // use bool to make sure the player is only listed once per team
     std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
 
+    
+
 public:
+    static int totalDrafts;
 
     draft(const std::vector<std::string>& members) : leagueMembers(members) 
     {
@@ -39,6 +42,7 @@ public:
         {
             teamPlayerMap[team] = std::map<std::string, std::string>();
         }
+        ++totalDrafts;
     }
 
     std::vector<std::string> draftOrder = leagueMembers;

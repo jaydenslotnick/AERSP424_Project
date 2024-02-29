@@ -4,6 +4,9 @@
 #include <array>
 #include <vector>
 
+
+int maxLeagueMembers = 16;
+
 class League {
 private:
     int numMembers;
@@ -46,12 +49,12 @@ public:
         bool validNumMembers = false;        
         while (!validNumMembers)
         {
-            std::cout << "Enter number of members (up to 16): " << std::endl;
+            std::cout << "Enter number of members (up to " << maxLeagueMembers << "): " << std::endl;
             std::cin >> numMembers;
 
-            if (std::cin.fail() || numMembers <= 0 || numMembers > 16)
+            if (std::cin.fail() || numMembers <= 0 || numMembers > maxLeagueMembers)
             {
-                std::cout << "Please enter a positive integer up to 10." << std::endl;
+                std::cout << "Please enter a positive integer up to " << maxLeagueMembers << "." << std::endl;
                 std::cin.clear();       // clear the error flag
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');     // discard invalid input
             }
