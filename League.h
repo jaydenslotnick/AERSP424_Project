@@ -14,6 +14,12 @@ private:
     std::vector<std::string> leagueMembers;
     std::string* ptrToLeague = &leagueName;         // creates a pointer to the memory address of the league name
 
+    int qbLimit = 0;
+    int rbLimit = 0;
+    int wrLimit = 0;
+    int teLimit = 0;
+    int roundLimit = 0; // New member variable for round limit
+
 public:
     // Constructor
     League(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
@@ -46,10 +52,49 @@ public:
         }
         std::cout << "League name entered: " << leagueName << std::endl;
 
+        // position and round limits
+
+
+
+        std::cout << "Enter QB Limit: " << std::endl;
+        std::cin >> qbLimit;
+
+
+        std::cout << "Enter RB Limit: " << std::endl;
+        std::cin >> rbLimit;
+
+        std::cout << "Enter WR Limit: " << std::endl;
+        std::cin >> wrLimit;
+
+        std::cout << "Enter TE Limit: " << std::endl;
+        std::cin >> teLimit;
+
+        std::cout << "The total roster limit is: " << qbLimit + rbLimit + wrLimit + teLimit << std::endl;
+
+        bool validRoundLimit = false;
+
+        while (!validRoundLimit)
+        {
+            std::cout << "\nEnter number of rounds (must be less than total roster limit): " << std::endl;
+            std::cin >> roundLimit;
+
+            if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
+            {
+                validRoundLimit = true;
+            }
+
+            else
+            {
+                std::cout << "\nPlease input number of rounds that are less than the total roster limit";
+            }
+        }
+
+
+
         bool validNumMembers = false;        
         while (!validNumMembers)
         {
-            std::cout << "Enter number of members (up to " << maxLeagueMembers << "): " << std::endl;
+            std::cout << "Enter number of league members (up to " << maxLeagueMembers << "): " << std::endl;
             std::cin >> numMembers;
 
             if (std::cin.fail() || numMembers <= 0 || numMembers > maxLeagueMembers)
@@ -85,6 +130,32 @@ public:
         }
 
         return leagueMembers;
+    }
+
+    // Accessor functions for position limits and round limit
+    int getQbLimit() const 
+    { 
+        return qbLimit; 
+    }
+
+    int getRbLimit() const 
+    { 
+        return rbLimit; 
+    }
+
+    int getWrLimit() const 
+    { 
+        return wrLimit; 
+    }
+
+    int getTeLimit() const 
+    { 
+        return teLimit; 
+    }
+
+    int getRoundLimit() const 
+    { 
+        return roundLimit; 
     }
 
 };

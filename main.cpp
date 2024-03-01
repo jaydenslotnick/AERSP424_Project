@@ -11,22 +11,20 @@ int draft::totalDrafts = 0;
 int main()
 {
 
-	ranking test;
+	ranking top300Ranking;
 
 	// calls operate to output the rankings
-	test.operate();
+	top300Ranking.operate();
 
 
 	//creates league and calls function to add members
 	League myLeague("", 0);
 	myLeague.getLeagueInfo();
-	std::vector<std::string> leagueMembers = myLeague.addMembers();
-
-
+ 
 
 	// testing draft file
 	
-	draft testDraft(leagueMembers);
+	draft testDraft(myLeague.addMembers(), myLeague.getQbLimit(), myLeague.getRbLimit(), myLeague.getWrLimit(), myLeague.getTeLimit(), myLeague.getRoundLimit());
 	
 	testDraft.operate();
 	std::cout << "Number of drafts completed: " << draft::totalDrafts << std::endl;

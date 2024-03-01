@@ -23,6 +23,11 @@ private:
     char morePlayers = 0;
     int numPlayers = 0;
 
+    int qbtaken = 0;
+    int rbtaken = 0;
+    int wrtaken = 0;
+    int tetaken = 0;
+
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
     std::string ownTeam;
@@ -30,19 +35,21 @@ private:
     // create a map of maps to store each drafters picks
         // use bool to make sure the player is only listed once per team
     std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
+    std::map<std::string, int> positionLimits;
 
     
 
 public:
     static int totalDrafts;
 
-    draft(const std::vector<std::string>& members) : leagueMembers(members) 
+    draft(const std::vector<std::string>& members, int qb, int rb, int wr, int te, int roundLimit) : leagueMembers(members), qbLimit(qb), rbLimit(rb), wrLimit(wr), teLimit(te), roundLimit(roundLimit) 
     {
         for (const auto& team : leagueMembers)
         {
             teamPlayerMap[team] = std::map<std::string, std::string>();
         }
         ++totalDrafts;
+        positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} };
     }
 
     std::vector<std::string> draftOrder = leagueMembers;
@@ -86,9 +93,9 @@ public:
             }
         }
 
-        std::cout << "Enter Round Limit" << std::endl;
-        std::cin >> roundLimit;
-        std::cout << "\n";
+        //std::cout << "Enter Round Limit" << std::endl;
+        //std::cin >> roundLimit;
+        //std::cout << "\n";
 
 
 
@@ -143,9 +150,12 @@ public:
                     std::cout << "Enter desired player (number only): " << std::endl;
                     std::cin >> tempPlayer;
                     std::cout << "" << std::endl;
+
                     std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer - 1].first << ", " << top300[tempPlayer - 1].second[0] << std::endl;
                     teamPlayerMap[team][top300[tempPlayer - 1].first] = top300[tempPlayer - 1].second[0];
                     top300.erase(top300.begin() + tempPlayer - 1);
+
+
 
                     // increases overall pick nymber
                     ++playerCount;
@@ -155,7 +165,7 @@ public:
                     // Use iterators to find the player by rank
                     auto it = top300.begin();
                     if (it != top300.end()) {
-                        std::string selectedPlayer = it->first; // First element is the player name
+                        std::string& selectedPlayer = it->first; // First element is the player name
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it);
@@ -182,57 +192,40 @@ public:
             std::cout << "Team: " << teamEntry.first << std::endl;          // outputs team name
             for (const auto& playerEntry : teamEntry.second)
             {
-                if (playerEntry.second == "QB")
+                const std::string& position = playerEntry.second;
+                if (position == "QB")
                 {
-                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                    std::cout << position << ": " << playerEntry.first << std::endl;
                 }
             }
             for (const auto& playerEntry : teamEntry.second)
             {
-                if (playerEntry.second == "RB")
+                const std::string& position = playerEntry.second;
+                if (position == "RB")
                 {
-                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                    std::cout << position << ": " << playerEntry.first << std::endl;
                 }
             }
             for (const auto& playerEntry : teamEntry.second)
             {
-                if (playerEntry.second == "WR")
+                const std::string& position = playerEntry.second;
+                if (position == "WR")
                 {
-                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                    std::cout << position << ": " << playerEntry.first << std::endl;
                 }
             }
             for (const auto& playerEntry : teamEntry.second)
             {
-                if (playerEntry.second == "TE")
+                const std::string& position = playerEntry.second;
+                if (position == "TE")
                 {
-                    std::cout << playerEntry.second << ": " << playerEntry.first << std::endl;
+                    std::cout << position << ": " << playerEntry.first << std::endl;
                 }
             }
             std::cout << std::endl;     // used to make output nicer and more read-able
         }
 
 
-
-
-        // not sure how we would implement this
-        //std::cout << "Enter QB Limit: " << std::endl;
-        //std::cin >> qbLimit;
-
-
-        //std::cout << "Enter RB Limit: " << std::endl;
-        //std::cin >> rbLimit;
-
-        //std::cout << "Enter WR Limit: " << std::endl;
-        //std::cin >> wrLimit;
-
-        //std::cout << "Enter TE Limit: " << std::endl;
-        //std::cin >> teLimit;
-
-        // Assigns values to the currentRound and roundLimit variables
-        //int currentRound = 1;
-
-        //std::cout << "Enter number of rounds: " << std::endl;
-        //std::cin >> roundLimit;
 
         // End of draft stuff
 
