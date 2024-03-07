@@ -9,24 +9,38 @@
 
 class draft {
 private:
-    std::string player;
-    int lineNumber = 0;
-    std::vector<std::string> leagueMembers;
-    int qbLimit = 0;
-    int rbLimit = 0;
-    int wrLimit = 0;
-    int teLimit = 0;
-    int currentRound = 0;
-    int roundLimit = 0;
-    int tempPlayer = 0;
-    int playerCount = 1;
-    char morePlayers = 0;
-    int numPlayers = 0;
 
-    int qbtaken = 0;
-    int rbtaken = 0;
-    int wrtaken = 0;
-    int tetaken = 0;
+
+    std::string player;
+    unsigned int lineNumber = 0;
+    std::vector<std::string> leagueMembers;
+    unsigned int qbLimit = 0;
+    unsigned int rbLimit = 0;
+    unsigned int wrLimit = 0;
+    unsigned int teLimit = 0;
+    unsigned int currentRound = 0;
+    unsigned int roundLimit = 0;
+    unsigned int tempPlayer = 0;
+    unsigned int playerCount = 1;
+    unsigned char morePlayers = 0;
+    unsigned int numPlayers = 0;
+    unsigned int defaultPlayers = 10;
+
+    unsigned int qbtaken = 0;
+    unsigned int rbtaken = 0;
+    unsigned int wrtaken = 0;
+    unsigned int tetaken = 0;
+    signed int indexHelper = -1;
+
+
+    // average salaries of starting nfl players in millions
+    float qbSalary = 28.2; 
+    float rbSalary = 2.7;
+    float wrSalary = 10;
+    float teSalary = 8;
+
+    // total estimated salary spent on team 
+    double totalSalarySpent = 0.0;
 
     std::vector<std::pair<std::string, std::vector<std::string>>> top300;
     std::string line;
@@ -54,6 +68,174 @@ public:
 
     std::vector<std::string> draftOrder = leagueMembers;
 
+
+    // displays the players available
+    void displayTopPlayers(int numPlayers) {
+        std::cout << "Top " << numPlayers << " players remaining: " << std::endl;
+        for (int i = 0; i < numPlayers; ++i) {
+            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
+        }
+    }
+
+    // asks the user whether they would like to see more top players available
+    void promptForMorePlayers() {
+        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
+        std::cin >> morePlayers;
+    }
+
+
+    // receives user input for the pick that they want
+    void getUserPick() {
+        std::cout << "It is your turn to pick!" << std::endl;
+        std::cout << "Enter desired player (number only): " << std::endl;
+        std::cin >> tempPlayer;
+        std::cout << "" << std::endl;
+
+        std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
+        teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
+        top300.erase(top300.begin() + tempPlayer + indexHelper);
+        ++playerCount;
+    }
+
+
+    // simulates the draft with "robots" picking at spots other than the user
+    void draftSimulation(int round) {
+        // Draft simulation
+        for (int round = 1; round <= roundLimit; ++round) {
+            std::cout << "\nRound " << round << ":\n";
+
+            // reverses order to represent a snake draft
+            if (round % 2 == 0) {
+                std::reverse(draftOrder.begin(), draftOrder.end());
+            }
+
+            // Goes through draft logic for each team
+            for (const auto& team : draftOrder) {
+                int teamIndex = 0;
+
+                // goes user control over their own draft slot
+                if (team == ownTeam) {
+                    std::cout << "" << std::endl;
+
+
+                    displayTopPlayers(defaultPlayers);
+
+
+                    // asks users if they want to see any more players
+                    std::cout << "" << std::endl;
+                    promptForMorePlayers();
+
+                    // will run until user does not want to see any more new players
+                    while (morePlayers == 'y')
+                    {
+                        std::cout << "Enter number of players you would like to see: " << std::endl;
+                        std::cin >> numPlayers;
+                        std::cout << "Top " << numPlayers << " players remaining: " << std::endl;
+
+                        for (int i = 0; i < numPlayers; ++i) {
+                            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
+                        }
+                        std::cout << "" << std::endl;
+                        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
+                        std::cin >> morePlayers;
+                    }
+
+                    // gets user inputted pick
+                    std::cout << "" << std::endl;
+                    std::cout << "It is your turn to pick!" << std::endl;
+                    std::cout << "Enter desired player (number only): " << std::endl;
+                    std::cin >> tempPlayer;
+                    std::cout << "" << std::endl;
+
+                    std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
+                    teamPlayerMap[team][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
+                    top300.erase(top300.begin() + tempPlayer + indexHelper);
+
+
+
+                    // increases overall pick nymber
+                    ++playerCount;
+                }
+
+                else {
+                    // Use iterators to find the player by rank
+                    auto it = top300.begin();
+                    if (it != top300.end()) {
+                        std::string& selectedPlayer = it->first; // First element is the player name
+                        std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
+                        teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
+                        top300.erase(it);
+                        ++playerCount;
+                    }
+                    else {
+                        std::cerr << "Error: player not found for round " << round << std::endl;
+                    }
+                }
+                ++teamIndex;
+            }
+            std::cout << std::endl;     // used to make output nicer and more read-able
+        }
+    }
+
+
+
+
+    // outputs the teams picks at the end of the draft
+    void outputTeamPicks() {
+        // output each drafters team
+        std::cout << "\nTeam List\n" << std::endl;
+        for (const auto& teamEntry : teamPlayerMap)
+        {
+            totalSalarySpent = 0;
+
+            std::cout << "Team: " << teamEntry.first << std::endl; // outputs team name
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                const std::string& position = playerEntry.second;
+                if (position == "QB")
+                {
+                    std::cout << position << ": " << playerEntry.first << std::endl;
+                    totalSalarySpent += qbSalary;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                const std::string& position = playerEntry.second;
+                if (position == "RB")
+                {
+                    std::cout << position << ": " << playerEntry.first << std::endl;
+                    totalSalarySpent += rbSalary;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                const std::string& position = playerEntry.second;
+                if (position == "WR")
+                {
+                    std::cout << position << ": " << playerEntry.first << std::endl;
+                    totalSalarySpent += wrSalary;
+                }
+            }
+            for (const auto& playerEntry : teamEntry.second)
+            {
+                const std::string& position = playerEntry.second;
+                if (position == "TE")
+                {
+                    std::cout << position << ": " << playerEntry.first << std::endl;
+                    totalSalarySpent += teSalary;
+                }
+            }
+            std::cout << "Total estimated salary: $" << totalSalarySpent << " million" << std::endl;
+            std::cout << std::endl;     // used to make output nicer and more read-able
+        }
+    }
+
+
+    
+
+
+
+    // operates and runs the functions above
     void operate() {
 
         std::cout << "" << std::endl;
@@ -92,142 +274,9 @@ public:
                 top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
             }
         }
+        draftSimulation(roundLimit);
+        outputTeamPicks();
 
-        //std::cout << "Enter Round Limit" << std::endl;
-        //std::cin >> roundLimit;
-        //std::cout << "\n";
-
-
-
-        // Draft simulation
-        for (int round = 1; round <= roundLimit; ++round) {
-            std::cout << "\nRound " << round << ":\n";
-
-            // reverses order to represent a snake draft
-            if (round % 2 == 0) {
-                std::reverse(draftOrder.begin(), draftOrder.end());
-            }
-
-            // Goes through draft logic for each team
-            for (const auto& team : draftOrder) {
-                int teamIndex = 0;
-
-                // goes user control over their own draft slot
-                if (team == ownTeam) {
-                    std::cout << "" << std::endl;
-
-
-                    // default outputs top 10 players remaining
-                    std::cout << "Top 10 players remaining: " << std::endl;
-                    for (int i = 0; i < 10; ++i) {
-                        std::cout << i+1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
-                    }
-
-
-                    // asks users if they want to see any more players
-                    std::cout << "" << std::endl;
-                    std::cout << "Do you wish to see more players? (y/n)" << std::endl;
-                    std::cin >> morePlayers;
-
-                    // will run until user does not want to see any more new players
-                    while (morePlayers == 'y')
-                    {
-                        std::cout << "Enter number of players you would like to see: " << std::endl;
-                        std::cin >> numPlayers;
-                        std::cout << "Top " << numPlayers <<  " players remaining: " << std::endl;
-
-                        for (int i = 0; i < numPlayers; ++i) {
-                            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
-                        }
-                        std::cout << "" << std::endl;
-                        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
-                        std::cin >> morePlayers;
-                    }
-
-                    // gets user inputted pick
-                    std::cout << "" << std::endl;
-                    std::cout << "It is your turn to pick!" << std::endl;
-                    std::cout << "Enter desired player (number only): " << std::endl;
-                    std::cin >> tempPlayer;
-                    std::cout << "" << std::endl;
-
-                    std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer - 1].first << ", " << top300[tempPlayer - 1].second[0] << std::endl;
-                    teamPlayerMap[team][top300[tempPlayer - 1].first] = top300[tempPlayer - 1].second[0];
-                    top300.erase(top300.begin() + tempPlayer - 1);
-
-
-
-                    // increases overall pick nymber
-                    ++playerCount;
-                }
-
-                else {
-                    // Use iterators to find the player by rank
-                    auto it = top300.begin();
-                    if (it != top300.end()) {
-                        std::string& selectedPlayer = it->first; // First element is the player name
-                        std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
-                        teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
-                        top300.erase(it);
-                        ++playerCount;
-                    }
-                    else {
-                        std::cerr << "Error: player not found for round " << round << std::endl;
-                    }
-                }
-                ++teamIndex;
-            }
-            std::cout << std::endl;     // used to make output nicer and more read-able
-        }
-
-
-
-
-
-        // output each drafters team
-        std::cout << "\nTeam List\n" << std::endl;
-        for (const auto& teamEntry : teamPlayerMap)
-        {
-
-            std::cout << "Team: " << teamEntry.first << std::endl;          // outputs team name
-            for (const auto& playerEntry : teamEntry.second)
-            {
-                const std::string& position = playerEntry.second;
-                if (position == "QB")
-                {
-                    std::cout << position << ": " << playerEntry.first << std::endl;
-                }
-            }
-            for (const auto& playerEntry : teamEntry.second)
-            {
-                const std::string& position = playerEntry.second;
-                if (position == "RB")
-                {
-                    std::cout << position << ": " << playerEntry.first << std::endl;
-                }
-            }
-            for (const auto& playerEntry : teamEntry.second)
-            {
-                const std::string& position = playerEntry.second;
-                if (position == "WR")
-                {
-                    std::cout << position << ": " << playerEntry.first << std::endl;
-                }
-            }
-            for (const auto& playerEntry : teamEntry.second)
-            {
-                const std::string& position = playerEntry.second;
-                if (position == "TE")
-                {
-                    std::cout << position << ": " << playerEntry.first << std::endl;
-                }
-            }
-            std::cout << std::endl;     // used to make output nicer and more read-able
-        }
-
-
-
-        // End of draft stuff
 
         // close files
         NFL_Top_300.close();
@@ -237,7 +286,7 @@ public:
         te.close();
 
 
-    };
+    }
 
 
 };
