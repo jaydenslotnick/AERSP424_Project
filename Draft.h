@@ -6,6 +6,9 @@
 #include <vector>
 #include <map>
 
+#ifndef DRAFT_H
+#define DRAFT_H
+
 
 class draft {
 private:
@@ -290,3 +293,4 @@ public:
 
 
 };
+#endif

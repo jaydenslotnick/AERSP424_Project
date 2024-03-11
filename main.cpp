@@ -4,6 +4,7 @@
 #include "Ranking.h"
 #include "League.h"
 #include "Draft.h"
+#include "CustomLeague.h"
 
 
 int draft::totalDrafts = 0;
@@ -18,7 +19,7 @@ int main()
 
 
 	//creates league and calls function to add members
-	League myLeague("", 0);
+	CustomLeague myLeague("", 0);
 	myLeague.getLeagueInfo();
  
 

@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 
+#ifndef RANKING_H
+#define RANKING_H
 
 class ranking {
 private:
@@ -57,3 +59,5 @@ public:
     };
 
 };
+
+#endif
