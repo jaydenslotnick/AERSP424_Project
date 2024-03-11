@@ -54,6 +54,8 @@ private:
     std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
     std::map<std::string, int> positionLimits;
 
+    std::vector<unsigned int> availablePositions;
+
     
 
 public:
@@ -67,6 +69,8 @@ public:
         }
         ++totalDrafts;
         positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} };
+
+       // availablePositions.resize(roundLimit, 0xFFFFFFFF);
     }
 
     std::vector<std::string> draftOrder = leagueMembers;
@@ -149,6 +153,7 @@ public:
                     std::cout << "Enter desired player (number only): " << std::endl;
                     std::cin >> tempPlayer;
                     std::cout << "" << std::endl;
+                   // takePosition(top300[tempPlayer + indexHelper].second[0]);
 
                     std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
                     teamPlayerMap[team][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
@@ -169,6 +174,7 @@ public:
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it);
                         ++playerCount;
+                       // takePosition(it->second[0]);
                     }
                     else {
                         std::cerr << "Error: player not found for round " << round << std::endl;
@@ -230,12 +236,53 @@ public:
             }
             std::cout << "Total estimated salary: $" << totalSalarySpent << " million" << std::endl;
             std::cout << std::endl;     // used to make output nicer and more read-able
+
+
+            // Output number of players taken per position
+            std::cout << "Number of players taken per position:" << std::endl;
+           // std::cout << "QB: " << countPlayersTaken("QB") << std::endl;
+           // std::cout << "RB: " << countPlayersTaken("RB") << std::endl;
+           // std::cout << "WR: " << countPlayersTaken("WR") << std::endl;
+           // std::cout << "TE: " << countPlayersTaken("TE") << std::endl;
+        
         }
     }
 
-
-    
-
+    //// Function to mark a position as taken in a specific round
+    //void takePosition(const std::string& position) {
+    //    if (position == "QB") {
+    //        availablePositions[0] &= ~(1 << 0); // Clear bit representing QB position
+    //    }
+    //    else if (position == "RB") {
+    //        availablePositions[1] &= ~(1 << 1); // Clear bit representing RB position
+    //    }
+    //    else if (position == "WR") {
+    //        availablePositions[2] &= ~(1 << 2); // Clear bit representing WR position
+    //    }
+    //    else if (position == "TE") {
+    //        availablePositions[3] &= ~(1 << 3); // Clear bit representing TE position
+    //    }
+    //}
+    //
+    //// Function to count the number of players taken for a given position
+    //int countPlayersTaken(const std::string& position) {
+    //    int count = 0;
+    //    for (int round = 0; round <= roundLimit-1; ++round) {
+    //        if (position == "QB") {
+    //            count += ((availablePositions[round] & (1 << 0)) != 0);
+    //        }
+    //        else if (position == "RB") {
+    //            count += ((availablePositions[round] & (1 << 1)) != 0);
+    //        }
+    //        else if (position == "WR") {
+    //            count += ((availablePositions[round] & (1 << 2)) != 0);
+    //        }
+    //        else if (position == "TE") {
+    //            count += ((availablePositions[round] & (1 << 3)) != 0);
+    //        }
+    //    }
+    //    return count;
+    //}
 
 
     // operates and runs the functions above

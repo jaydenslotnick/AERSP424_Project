@@ -26,7 +26,7 @@ public:
     virtual void getLeagueInfo() = 0;
 
     // Pure virtual function for adding members
-    virtual void addMembers() = 0;
+    virtual std::vector<std::string> addMembers() = 0;
 
     // Accessor function for league name
     std::string getLeagueName() const {
@@ -34,10 +34,11 @@ public:
     }
 
     // Virtual functions for getting position limits
-    virtual int getQbLimit() const = 0;
-    virtual int getRbLimit() const = 0;
-    virtual int getWrLimit() const = 0;
-    virtual int getTeLimit() const = 0;
+    virtual int getQbLimit() = 0;
+    virtual int getRbLimit() = 0;
+    virtual int getWrLimit() = 0;
+    virtual int getTeLimit() = 0;
+    virtual int getRoundLimit() = 0;
 
 };
 

@@ -25,7 +25,7 @@ private:
 
 public:
     // Constructor
-    CustomLeague(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
+    CustomLeague(const std::string& name, int numTeams) : League(name, numTeams), leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
 
         std::cout << "\nLeague created with ID#: " << ptrToLeague << std::endl;
     };
@@ -136,27 +136,27 @@ public:
     }
 
     // Accessor functions for position limits and round limit
-    int getQbLimit() const
+    int getQbLimit() override
     {
         return qbLimit;
     }
 
-    int getRbLimit() const
+    int getRbLimit() override
     {
         return rbLimit;
     }
 
-    int getWrLimit() const
+    int getWrLimit() override
     {
         return wrLimit;
     }
 
-    int getTeLimit() const
+    int getTeLimit() override
     {
         return teLimit;
     }
 
-    int getRoundLimit() const
+    int getRoundLimit() override
     {
         return roundLimit;
     }
