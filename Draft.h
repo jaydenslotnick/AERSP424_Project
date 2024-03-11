@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include <map>
+#include <random>
 
 #ifndef DRAFT_H
 #define DRAFT_H
@@ -55,6 +56,8 @@ private:
     std::map<std::string, int> positionLimits;
 
     std::vector<unsigned int> availablePositions;
+
+    int pick = 0;
 
     
 
@@ -169,10 +172,17 @@ public:
                     // Use iterators to find the player by rank
                     auto it = top300.begin();
                     if (it != top300.end()) {
+
+                        // adds probability randomization to the draft
+                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% forth pick
+                        pick = pickRandomizer();
+
+                        // advances the top300 to correct pick and chooses the players
+                        std::advance(it, pick - 1);
                         std::string& selectedPlayer = it->first; // First element is the player name
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
-                        top300.erase(it);
+                        top300.erase(it); // erases player selected from the top300 container
                         ++playerCount;
                        // takePosition(it->second[0]);
                     }
@@ -186,7 +196,24 @@ public:
         }
     }
 
+    int pickRandomizer()
+    {
+        // Define the probabilities
+        std::vector<double> probabilities = { 0.4, 0.3, 0.2, 0.1 }; // Probabilities for numbers 1, 2, 3, 4 respectively
 
+        // Create a discrete distribution based on the probabilities
+        std::discrete_distribution<int> distribution({ 0.4, 0.3, 0.2, 0.1 });
+
+        // Seed the random number generator
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        // Generate a random number based on the probabilities
+        int result = distribution(gen) + 1; // Adding 1 to make the result in the range [1, 4]
+
+        // Output the selected number
+        return result;
+    }
 
 
     // outputs the teams picks at the end of the draft
