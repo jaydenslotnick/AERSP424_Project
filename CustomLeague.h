@@ -36,8 +36,14 @@ public:
         bool validLeagueName = false;
         while (!validLeagueName)
         {
-            std::cout << "Enter league name: " << std::endl;
+            std::cout << "Enter league name consisting of only letters and spaces: " << std::endl;
             std::getline(std::cin, leagueName); // Allowing the league name to be multiple words
+
+            if (leagueName.empty())             // does not allow the league name to be empty
+            {
+                std::cout << "Please enter a valid non-empty league name. " << std::endl;
+                continue;
+            }
 
             validLeagueName = true;
             for (char c : leagueName)       // iterates over each character in the string leagueName
@@ -57,11 +63,8 @@ public:
 
         // position and round limits
 
-
-
         std::cout << "Enter QB Limit: " << std::endl;
         std::cin >> qbLimit;
-
 
         std::cout << "Enter RB Limit: " << std::endl;
         std::cin >> rbLimit;
@@ -81,7 +84,14 @@ public:
             std::cout << "\nEnter number of rounds (must be less than total roster limit): " << std::endl;
             std::cin >> roundLimit;
 
-            if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
+            if (std::cin.fail())
+            {
+                std::cout << "\nInvalid input. Please enter a valid number." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+
+            else if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
             {
                 validRoundLimit = true;
             }
