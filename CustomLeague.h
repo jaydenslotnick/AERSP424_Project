@@ -23,6 +23,12 @@ private:
     int teLimit = 0;
     int roundLimit = 0; // New member variable for round limit
 
+    bool validqbLimit = false;
+    bool validrbLimit = false;
+    bool validwrLimit = false;
+    bool validteLimit = false;
+
+
 public:
     // Constructor
     CustomLeague(const std::string& name, int numTeams) : League(name, numTeams), leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
@@ -65,15 +71,84 @@ public:
 
         std::cout << "Enter QB Limit: " << std::endl;
         std::cin >> qbLimit;
+        
+        while (validqbLimit != true) 
+        {
+            if (std::cin.fail())
+            {
+                std::cout << "Invalid input. Please enter an integer." << std::endl;
+                std::cin.clear(); // clears the invalid input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
+                std::cout << "Enter QB Limit: " << std::endl;
+                std::cin >> qbLimit;
+            }
+            else
+            {
+                validqbLimit = true;
+            }
+                
+        }
+
 
         std::cout << "Enter RB Limit: " << std::endl;
         std::cin >> rbLimit;
 
+        while (validrbLimit != true)
+        {
+            if (std::cin.fail())
+            {
+                std::cout << "Invalid input. Please enter an integer." << std::endl;
+                std::cin.clear(); // clears the invalid input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
+                std::cout << "Enter RB Limit: " << std::endl;
+                std::cin >> rbLimit;
+            }
+            else
+            {
+                validrbLimit = true;
+            }
+
+        }
+
         std::cout << "Enter WR Limit: " << std::endl;
         std::cin >> wrLimit;
 
+        while (validwrLimit != true)
+        {
+            if (std::cin.fail())
+            {
+                std::cout << "Invalid input. Please enter an integer." << std::endl;
+                std::cin.clear(); // clears the invalid input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
+                std::cout << "Enter WR Limit: " << std::endl;
+                std::cin >> wrLimit;
+            }
+            else
+            {
+                validwrLimit = true;
+            }
+
+        }
+
         std::cout << "Enter TE Limit: " << std::endl;
         std::cin >> teLimit;
+
+        while (validteLimit != true)
+        {
+            if (std::cin.fail())
+            {
+                std::cout << "Invalid input. Please enter an integer." << std::endl;
+                std::cin.clear(); // clears the invalid input
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
+                std::cout << "Enter TE Limit: " << std::endl;
+                std::cin >> teLimit;
+            }
+            else
+            {
+                validteLimit = true;
+            }
+
+        }
 
         std::cout << "The total roster limit is: " << qbLimit + rbLimit + wrLimit + teLimit << std::endl;
 
@@ -81,7 +156,7 @@ public:
 
         while (!validRoundLimit)
         {
-            std::cout << "\nEnter number of rounds (must be less than total roster limit): " << std::endl;
+            std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
             std::cin >> roundLimit;
 
             if (std::cin.fail())

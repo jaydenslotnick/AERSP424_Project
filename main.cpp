@@ -5,6 +5,7 @@
 #include "League.h"
 #include "Draft.h"
 #include "CustomLeague.h"
+#include <thread>
 
 
 int draft::totalDrafts = 0;
@@ -14,8 +15,10 @@ int main()
 
 	ranking top300Ranking;
 
-	// calls operate to output the rankings
-	top300Ranking.operate();
+	// introducing a thread to complete the ranking operation
+	std::thread rankingThread(&ranking::operate, &top300Ranking);
+
+	rankingThread.join(); // joins ranking thread to the main thread
 
 
 	//creates league and calls function to add members
