@@ -59,6 +59,17 @@ private:
 
     int pick = 0;
 
+    // containers for positional limits for each team
+    std::map<std::string, std::map<std::string, int>> qbLimitContainer; // Key: Team name, Value: Count of QBs taken
+    std::map<std::string, std::map<std::string, int>> rbLimitContainer; // Key: Team name, Value: Count of RBs taken
+    std::map<std::string, std::map<std::string, int>> wrLimitContainer; // Key: Team name, Value: Count of WRs taken
+    std::map<std::string, std::map<std::string, int>> teLimitContainer; // Key: Team name, Value: Count of TEs taken
+    int qbcount = 0;
+    int rbcount = 0;
+    int wrcount = 0;
+    int tecount = 0;
+
+
     
 
 public:
@@ -73,7 +84,16 @@ public:
         ++totalDrafts;
         positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} };
 
-       // availablePositions.resize(roundLimit, 0xFFFFFFFF);
+        
+        // resizes positional limit containers based on number of league members
+        for (const auto& member : members) {
+            qbLimitContainer[member] = std::map<std::string, int>();
+            rbLimitContainer[member] = std::map<std::string, int>();
+            wrLimitContainer[member] = std::map<std::string, int>();
+            teLimitContainer[member] = std::map<std::string, int>();
+        }
+
+       
     }
 
     std::vector<std::string> draftOrder = leagueMembers;
@@ -180,6 +200,15 @@ public:
                         // advances the top300 to correct pick and chooses the players
                         std::advance(it, pick - 1);
                         std::string& selectedPlayer = it->first; // First element is the player name
+
+                        updatePositionCount(team, selectedPlayer);
+
+                        if (it->second[0] == "QB")
+                        {
+                            // add logic to check for position limits
+                        }
+                            
+
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it); // erases player selected from the top300 container
@@ -213,6 +242,31 @@ public:
 
         // Output the selected number
         return result;
+    }
+
+    // Function to update the count of positions taken by a team
+    void updatePositionCount(const std::string& team, const std::string& position) {
+        // Choose the appropriate container based on the position
+        std::map<std::string, std::map<std::string, int>>* container;
+        if (position == "QB") {
+            container = &qbLimitContainer;
+        }
+        else if (position == "RB") {
+            container = &rbLimitContainer;
+        }
+        else if (position == "WR") {
+            container = &wrLimitContainer;
+        }
+        else if (position == "TE") {
+            container = &teLimitContainer;
+        }
+        else {
+            // Invalid position
+            return;
+        }
+
+        // Increment the count of positions taken by the team
+        (*container)[team][position]++;
     }
 
 
