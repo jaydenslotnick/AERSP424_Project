@@ -21,12 +21,13 @@ private:
     int rbLimit = 0;
     int wrLimit = 0;
     int teLimit = 0;
-    int roundLimit = 0; // New member variable for round limit
+    int roundLimit = 0;
 
     bool validqbLimit = false;
     bool validrbLimit = false;
     bool validwrLimit = false;
     bool validteLimit = false;
+
 
 
 public:
@@ -69,8 +70,8 @@ public:
         }
         std::cout << "League name entered: " << leagueName << std::endl;
 
-        // Lambda function for input validation and assignment
-        auto inputValidation = [](int& limit) {
+        // Lambda function for input validation and assignment for the positional limits
+        auto positionLimitValidation = [](int& limit) {
             while (true) {
                 std::cin >> limit;
                 if (std::cin.fail()) {
@@ -82,48 +83,58 @@ public:
                     break;
                 }
             }
+        };
+
+        // Lambda function for input validation and assignment for the round limit
+        auto roundLimitValidation = [](int& roundLimit, int& qbLimit, int& rbLimit, int& wrLimit, int& teLimit) {
+
+            bool validRoundLimit = false;
+            while (!validRoundLimit)
+            {
+
+
+                std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
+                std::cin >> roundLimit;
+
+                if (std::cin.fail())
+                {
+                    std::cout << "\nInvalid input. Please enter a valid number." << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                }
+
+                else if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
+                {
+                    validRoundLimit = true;
+                }
+
+                else
+                {
+                    std::cout << "\nPlease input number of rounds that are less than the total roster limit";
+                }
+            }
             };
 
         // position and round limits
 
         std::cout << "Enter QB Limit: " << std::endl;
-        inputValidation(qbLimit);
+        positionLimitValidation(qbLimit);
 
         std::cout << "Enter RB Limit: " << std::endl;
-        inputValidation(rbLimit);
+        positionLimitValidation(rbLimit);
 
         std::cout << "Enter WR Limit: " << std::endl;
-        inputValidation(wrLimit);
+        positionLimitValidation(wrLimit);
 
         std::cout << "Enter TE Limit: " << std::endl;
-        inputValidation(teLimit);
+        positionLimitValidation(teLimit);
 
-        std::cout << "The total roster limit is: " << qbLimit + rbLimit + wrLimit + teLimit << std::endl;
 
-        bool validRoundLimit = false;
+        roundLimit = qbLimit + rbLimit + wrLimit + teLimit;
+        std::cout << "The total roster limit is: " << roundLimit << std::endl;
+        roundLimitValidation(roundLimit, qbLimit, rbLimit, wrLimit, teLimit);
 
-        while (!validRoundLimit)
-        {
-            std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
-            std::cin >> roundLimit;
 
-            if (std::cin.fail())
-            {
-                std::cout << "\nInvalid input. Please enter a valid number." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }
-
-            else if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
-            {
-                validRoundLimit = true;
-            }
-
-            else
-            {
-                std::cout << "\nPlease input number of rounds that are less than the total roster limit";
-            }
-        }
 
 
 

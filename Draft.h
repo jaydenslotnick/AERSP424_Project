@@ -113,6 +113,31 @@ public:
         std::cin >> morePlayers;
     }
 
+    // Function to update the count of positions taken by a team
+    void updatePositionCount(const std::string& team, const std::string& position) {
+        // Choose the appropriate container based on the position
+        std::map<std::string, std::map<std::string, int>>* container;
+        if (position == "QB") {
+            container = &qbLimitContainer;
+        }
+        else if (position == "RB") {
+            container = &rbLimitContainer;
+        }
+        else if (position == "WR") {
+            container = &wrLimitContainer;
+        }
+        else if (position == "TE") {
+            container = &teLimitContainer;
+        }
+        else {
+            // Invalid position
+            return;
+        }
+
+        // Increment the count of positions taken by the team
+        (*container)[team][position]++;
+    }
+
 
     // receives user input for the pick that they want
     void getUserPick() {
@@ -120,6 +145,10 @@ public:
         std::cout << "Enter desired player (number only): " << std::endl;
         std::cin >> tempPlayer;
         std::cout << "" << std::endl;
+        while (qbLimitContainer[ownTeam]["QB"] >= qbLimit)
+        {
+            std::cout << "Error: Positional limit exceeded. Please pick another player." << std::endl;
+        }
 
         std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
         teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
@@ -242,31 +271,6 @@ public:
 
         // Output the selected number
         return result;
-    }
-
-    // Function to update the count of positions taken by a team
-    void updatePositionCount(const std::string& team, const std::string& position) {
-        // Choose the appropriate container based on the position
-        std::map<std::string, std::map<std::string, int>>* container;
-        if (position == "QB") {
-            container = &qbLimitContainer;
-        }
-        else if (position == "RB") {
-            container = &rbLimitContainer;
-        }
-        else if (position == "WR") {
-            container = &wrLimitContainer;
-        }
-        else if (position == "TE") {
-            container = &teLimitContainer;
-        }
-        else {
-            // Invalid position
-            return;
-        }
-
-        // Increment the count of positions taken by the team
-        (*container)[team][position]++;
     }
 
 
