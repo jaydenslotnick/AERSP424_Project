@@ -113,9 +113,9 @@ public:
     }
 
     // Function to update the count of positions taken by a team
-    void updatePositionCount(const std::string& team, const std::string& position) {
-        // Choose the appropriate container based on the position
-        std::map<std::string, std::map<std::string, int>>* container;
+    void updatePositionCount(const std::string& team, const std::string& position) 
+    {
+      
         if (position == "QB") {
             ++qbLimitContainer[team];
         }
@@ -221,57 +221,65 @@ public:
                     getUserPick(); // gets user pick
                 }
 
-                else {
+                else 
+                {
                     // Use iterators to find the player by rank
                     auto it = top300.begin();
                     if (it != top300.end()) {
 
                         // adds probability randomization to the draft
-                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% fourth pick
+                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% forth pick
                         pick = pickRandomizer();
 
                         // advances the top300 to correct pick and chooses the players
                         std::advance(it, pick - 1);
                         std::string& selectedPlayer = it->first; // First element is the player name
+                        std::string selectedPosition = it->second[0];
+                        
 
-
-                        // Ensure that the position limit is not exceeded
-                        while (true)
+                        bool positionCheck = false;
+                        while (positionCheck == false)
                         {
-                            std::string selectedPosition = it->second[0];
-                            if (selectedPosition == "QB" && qbLimitContainer[team] >= qbLimit) {
-                                std::cout << "Moving to next player" << std::endl;
-                                ++it;
-                            }
-                            else if (selectedPosition == "RB" && rbLimitContainer[team] >= rbLimit) {
-                                std::cout << "Moving to next player" << std::endl;
-                                ++it;
-                            }
-                            else if (selectedPosition == "WR" && wrLimitContainer[team] >= wrLimit) {
-                                std::cout << "Moving to next player" << std::endl;
-                                ++it;
-                            }
-                            else if (selectedPosition == "TE" && teLimitContainer[team] >= teLimit) {
-                                std::cout << "Moving to next player" << std::endl;
-                                ++it;
-                            }
-                            else {
-                                break; // Positional limit not exceeded, break the loop
-                            }
+
+                            selectedPlayer = it->first;
+                            selectedPosition = it->second[0];
                             
-                            std::string& selectedPlayer = it->first;
-                            
+                            if (selectedPosition == "QB" && qbLimitContainer[team] >= qbLimit) 
+                            {
+                                std::cout << "Moving to next player" << std::endl;
+                                std::advance(it,1);
+                            }
+                            else if (selectedPosition == "RB" && rbLimitContainer[team] >= rbLimit) 
+                            {
+                                std::cout << "Moving to next player" << std::endl;
+                                std::advance(it, 1);
+                            }
+                            else if (selectedPosition == "WR" && wrLimitContainer[team] >= wrLimit) 
+                            {
+                                std::cout << "Moving to next player" << std::endl;
+                                std::advance(it, 1);
+                            }
+                            else if (selectedPosition == "TE" && teLimitContainer[team] >= teLimit) 
+                            {
+                                std::cout << "Moving to next player" << std::endl;
+                                std::advance(it, 1);
+                            }
+                            else 
+                            {
+                                positionCheck = true;
+                            }
+
                         }
 
-                            
-                        updatePositionCount(team, it->second[0]);
+                        updatePositionCount(team, selectedPosition);
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it); // erases player selected from the top300 container
                         ++playerCount;
-                       // takePosition(it->second[0]);
+                        // takePosition(it->second[0]);
                     }
-                    else {
+                    else 
+                    {
                         std::cerr << "Error: player not found for round " << round << std::endl;
                     }
                 }
