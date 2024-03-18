@@ -91,8 +91,6 @@ public:
             bool validRoundLimit = false;
             while (!validRoundLimit)
             {
-
-
                 std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
                 std::cin >> roundLimit;
 

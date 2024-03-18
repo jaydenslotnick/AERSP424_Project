@@ -51,7 +51,6 @@ private:
     std::string ownTeam;
 
     // create a map of maps to store each drafters picks
-        // use bool to make sure the player is only listed once per team
     std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
     std::map<std::string, int> positionLimits;
 
@@ -190,7 +189,7 @@ public:
             for (const auto& team : draftOrder) {
                 int teamIndex = 0;
 
-                // goes user control over their own draft slot
+                // gives user control over their own draft slot
                 if (team == ownTeam) {
                     std::cout << "" << std::endl;
 
@@ -227,7 +226,7 @@ public:
                     if (it != top300.end()) {
 
                         // adds probability randomization to the draft
-                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% forth pick
+                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% fourth pick
                         pick = pickRandomizer();
 
                         // advances the top300 to correct pick and chooses the players
