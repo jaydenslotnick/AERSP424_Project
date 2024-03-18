@@ -233,14 +233,37 @@ public:
                         std::advance(it, pick - 1);
                         std::string& selectedPlayer = it->first; // First element is the player name
 
-                        updatePositionCount(team, selectedPlayer);
 
-                        if (it->second[0] == "QB")
+                        // Ensure that the position limit is not exceeded
+                        while (true)
                         {
-                            // add logic to check for position limits
-                        }
+                            std::string selectedPosition = it->second[0];
+                            if (selectedPosition == "QB" && qbLimitContainer[team] >= qbLimit) {
+                                std::cout << "Moving to next player" << std::endl;
+                                ++it;
+                            }
+                            else if (selectedPosition == "RB" && rbLimitContainer[team] >= rbLimit) {
+                                std::cout << "Moving to next player" << std::endl;
+                                ++it;
+                            }
+                            else if (selectedPosition == "WR" && wrLimitContainer[team] >= wrLimit) {
+                                std::cout << "Moving to next player" << std::endl;
+                                ++it;
+                            }
+                            else if (selectedPosition == "TE" && teLimitContainer[team] >= teLimit) {
+                                std::cout << "Moving to next player" << std::endl;
+                                ++it;
+                            }
+                            else {
+                                break; // Positional limit not exceeded, break the loop
+                            }
                             
+                            std::string& selectedPlayer = it->first;
+                            
+                        }
 
+                            
+                        updatePositionCount(team, it->second[0]);
                         std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
                         teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
                         top300.erase(it); // erases player selected from the top300 container
