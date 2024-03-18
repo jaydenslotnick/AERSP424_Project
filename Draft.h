@@ -132,6 +132,7 @@ public:
     }
 
 
+
     // receives user input for the pick that they want
     void getUserPick() {
         std::cout << "It is your turn to pick!" << std::endl;
@@ -416,3 +417,5 @@ public:
 
 };
 #endif
+
+

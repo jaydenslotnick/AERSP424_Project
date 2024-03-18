@@ -18,8 +18,20 @@ private:
 
 public:
 
+    void operate()
+    {
+        std::cout << "Default operation" << std::endl;
+        originalOperate();
+    }
 
-    void operate() {
+    void operate(int val)       // overloading the operate function
+    {
+        std::cout << "Operation with integer" << val << std::endl;
+        originalOperate();
+    }
+
+
+    void originalOperate() {
 
         // opens the NFL Top 300 file
         std::ifstream NFL_Top_300("NFL_TOP_300.csv");
