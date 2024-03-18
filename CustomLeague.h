@@ -4,6 +4,7 @@
 #include <array>
 #include <vector>
 #include "League.h"
+#include <regex>
 
 #ifndef CUSTOMLEAGUE_H
 #define CUSTOMLEAGUE_H
@@ -54,19 +55,29 @@ public:
                 continue;
             }
 
-            validLeagueName = true;
-            for (char c : leagueName)       // iterates over each character in the string leagueName
+            std::regex pattern("[a-zA-Z ]+");   // defines a regular expression pattern that matches a sequence of upper or lower case letters and spaces
+            if (std::regex_match(leagueName, pattern))  // checks if the string leagueName matches the regex pattern
             {
-                if (!std::isalpha(c) && c != ' ')       // make sure the user enters only letters or spaces for the league name
-                {
-                    validLeagueName = false;
-                    break;
-                }
+                validLeagueName = true;
             }
-            if (!validLeagueName)                     // prints an error message if the user enters an invalid name
+            else
             {
                 std::cout << "Please enter a valid league name consisting only of letters and spaces." << std::endl;
             }
+
+            //validLeagueName = true;
+            //for (char c : leagueName)       // iterates over each character in the string leagueName
+            //{
+            //    if (!std::isalpha(c) && c != ' ')       // make sure the user enters only letters or spaces for the league name
+            //    {
+            //        validLeagueName = false;
+            //        break;
+            //    }
+            //}
+            //if (!validLeagueName)                     // prints an error message if the user enters an invalid name
+            //{
+            //    std::cout << "Please enter a valid league name consisting only of letters and spaces." << std::endl;
+            //}
         }
         std::cout << "League name entered: " << leagueName << std::endl;
 
