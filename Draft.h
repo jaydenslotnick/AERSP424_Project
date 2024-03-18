@@ -60,10 +60,10 @@ private:
     int pick = 0;
 
     // containers for positional limits for each team
-    std::map<std::string, std::map<std::string, int>> qbLimitContainer; // Key: Team name, Value: Count of QBs taken
-    std::map<std::string, std::map<std::string, int>> rbLimitContainer; // Key: Team name, Value: Count of RBs taken
-    std::map<std::string, std::map<std::string, int>> wrLimitContainer; // Key: Team name, Value: Count of WRs taken
-    std::map<std::string, std::map<std::string, int>> teLimitContainer; // Key: Team name, Value: Count of TEs taken
+    std::map<std::string, int> qbLimitContainer; // Key: Team name, Value: Count of QBs taken
+    std::map<std::string, int> rbLimitContainer; // Key: Team name, Value: Count of RBs taken
+    std::map<std::string, int> wrLimitContainer; // Key: Team name, Value: Count of WRs taken
+    std::map<std::string, int> teLimitContainer; // Key: Team name, Value: Count of TEs taken
     int qbcount = 0;
     int rbcount = 0;
     int wrcount = 0;
@@ -87,10 +87,10 @@ public:
         
         // resizes positional limit containers based on number of league members
         for (const auto& member : members) {
-            qbLimitContainer[member] = std::map<std::string, int>();
-            rbLimitContainer[member] = std::map<std::string, int>();
-            wrLimitContainer[member] = std::map<std::string, int>();
-            teLimitContainer[member] = std::map<std::string, int>();
+            qbLimitContainer[member] = 0;
+            rbLimitContainer[member] = 0;
+            wrLimitContainer[member] = 0;
+            teLimitContainer[member] = 0;
         }
 
        
@@ -118,24 +118,18 @@ public:
         // Choose the appropriate container based on the position
         std::map<std::string, std::map<std::string, int>>* container;
         if (position == "QB") {
-            container = &qbLimitContainer;
+            ++qbLimitContainer[team];
         }
         else if (position == "RB") {
-            container = &rbLimitContainer;
+            ++rbLimitContainer[team];
         }
         else if (position == "WR") {
-            container = &wrLimitContainer;
+            ++wrLimitContainer[team];
         }
         else if (position == "TE") {
-            container = &teLimitContainer;
-        }
-        else {
-            // Invalid position
-            return;
+            ++teLimitContainer[team];
         }
 
-        // Increment the count of positions taken by the team
-        (*container)[team][position]++;
     }
 
 
@@ -145,13 +139,37 @@ public:
         std::cout << "Enter desired player (number only): " << std::endl;
         std::cin >> tempPlayer;
         std::cout << "" << std::endl;
-        while (qbLimitContainer[ownTeam]["QB"] >= qbLimit)
+
+        // Ensure that the position limit is not exceeded
+        while (true) 
         {
-            std::cout << "Error: Positional limit exceeded. Please pick another player." << std::endl;
+            std::string selectedPosition = top300[tempPlayer + indexHelper].second[0];
+            if (selectedPosition == "QB" && qbLimitContainer[ownTeam] >= qbLimit) {
+                std::cout << "Error: QB positional limit exceeded. Please pick another player." << std::endl;
+            }
+            else if (selectedPosition == "RB" && rbLimitContainer[ownTeam] >= rbLimit) {
+                std::cout << "Error: RB positional limit exceeded. Please pick another player." << std::endl;
+            }
+            else if (selectedPosition == "WR" && wrLimitContainer[ownTeam] >= wrLimit) {
+                std::cout << "Error: WR positional limit exceeded. Please pick another player." << std::endl;
+            }
+            else if (selectedPosition == "TE" && teLimitContainer[ownTeam] >= teLimit) {
+                std::cout << "Error: TE positional limit exceeded. Please pick another player." << std::endl;
+            }
+            else {
+                break; // Positional limit not exceeded, break the loop
+            }
+
+            std::cout << "It is your turn to pick!" << std::endl;
+            std::cout << "Enter desired player (number only): " << std::endl;
+            std::cin >> tempPlayer;
+            std::cout << "" << std::endl;
         }
 
         std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
         teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
+        // Update the count of positions taken by the team
+        updatePositionCount(ownTeam, top300[tempPlayer + indexHelper].second[0]);
         top300.erase(top300.begin() + tempPlayer + indexHelper);
         ++playerCount;
     }
@@ -199,22 +217,8 @@ public:
                         std::cin >> morePlayers;
                     }
 
-                    // gets user inputted pick
-                    std::cout << "" << std::endl;
-                    std::cout << "It is your turn to pick!" << std::endl;
-                    std::cout << "Enter desired player (number only): " << std::endl;
-                    std::cin >> tempPlayer;
-                    std::cout << "" << std::endl;
-                   // takePosition(top300[tempPlayer + indexHelper].second[0]);
 
-                    std::cout << playerCount << ". " << team << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
-                    teamPlayerMap[team][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
-                    top300.erase(top300.begin() + tempPlayer + indexHelper);
-
-
-
-                    // increases overall pick nymber
-                    ++playerCount;
+                    getUserPick(); // gets user pick
                 }
 
                 else {
@@ -332,42 +336,6 @@ public:
         
         }
     }
-
-    //// Function to mark a position as taken in a specific round
-    //void takePosition(const std::string& position) {
-    //    if (position == "QB") {
-    //        availablePositions[0] &= ~(1 << 0); // Clear bit representing QB position
-    //    }
-    //    else if (position == "RB") {
-    //        availablePositions[1] &= ~(1 << 1); // Clear bit representing RB position
-    //    }
-    //    else if (position == "WR") {
-    //        availablePositions[2] &= ~(1 << 2); // Clear bit representing WR position
-    //    }
-    //    else if (position == "TE") {
-    //        availablePositions[3] &= ~(1 << 3); // Clear bit representing TE position
-    //    }
-    //}
-    //
-    //// Function to count the number of players taken for a given position
-    //int countPlayersTaken(const std::string& position) {
-    //    int count = 0;
-    //    for (int round = 0; round <= roundLimit-1; ++round) {
-    //        if (position == "QB") {
-    //            count += ((availablePositions[round] & (1 << 0)) != 0);
-    //        }
-    //        else if (position == "RB") {
-    //            count += ((availablePositions[round] & (1 << 1)) != 0);
-    //        }
-    //        else if (position == "WR") {
-    //            count += ((availablePositions[round] & (1 << 2)) != 0);
-    //        }
-    //        else if (position == "TE") {
-    //            count += ((availablePositions[round] & (1 << 3)) != 0);
-    //        }
-    //    }
-    //    return count;
-    //}
 
 
     // operates and runs the functions above
