@@ -97,6 +97,11 @@ public:
 
     std::vector<std::string> draftOrder = leagueMembers;
 
+    // Display top players with default number
+    void displayTopPlayers() {
+        displayTopPlayers(defaultPlayers);
+    }
+
 
     // displays the players available
     void displayTopPlayers(int numPlayers) {
@@ -110,6 +115,19 @@ public:
     void promptForMorePlayers() {
         std::cout << "Do you wish to see more players? (y/n)" << std::endl;
         std::cin >> morePlayers;
+
+        // will run until user does not want to see any more new players
+        while (morePlayers == 'y')
+        {
+            std::cout << "Enter number of players you would like to see: " << std::endl;
+            std::cin >> numPlayers;
+
+            displayTopPlayers(numPlayers);
+
+            std::cout << "" << std::endl;
+            std::cout << "Do you wish to see more players? (y/n)" << std::endl;
+            std::cin >> morePlayers;
+        }
     }
 
     // Function to update the count of positions taken by a team
@@ -160,6 +178,8 @@ public:
                 break; // Positional limit not exceeded, break the loop
             }
 
+            promptForMorePlayers();
+
             std::cout << "It is your turn to pick!" << std::endl;
             std::cout << "Enter desired player (number only): " << std::endl;
             std::cin >> tempPlayer;
@@ -195,29 +215,12 @@ public:
                     std::cout << "" << std::endl;
 
 
-                    displayTopPlayers(defaultPlayers);
+                    displayTopPlayers();
 
 
                     // asks users if they want to see any more players
                     std::cout << "" << std::endl;
                     promptForMorePlayers();
-
-                    // will run until user does not want to see any more new players
-                    while (morePlayers == 'y')
-                    {
-                        std::cout << "Enter number of players you would like to see: " << std::endl;
-                        std::cin >> numPlayers;
-                        std::cout << "Top " << numPlayers << " players remaining: " << std::endl;
-
-                        for (int i = 0; i < numPlayers; ++i) {
-                            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
-                        }
-                        std::cout << "" << std::endl;
-                        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
-                        std::cin >> morePlayers;
-                    }
-
-
                     getUserPick(); // gets user pick
                 }
 
@@ -233,33 +236,28 @@ public:
 
                         // advances the top300 to correct pick and chooses the players
                         std::advance(it, pick - 1);
-                        std::string& selectedPlayer = it->first; // First element is the player name
-                        std::string selectedPosition = it->second[0];
                         
 
                         bool positionCheck = false;
                         while (positionCheck == false)
                         {
-
-                            selectedPlayer = it->first;
-                            selectedPosition = it->second[0];
                             
-                            if (selectedPosition == "QB" && qbLimitContainer[team] >= qbLimit) 
-                            {
-                                std::cout << "Moving to next player" << std::endl;
-                                std::advance(it,1);
-                            }
-                            else if (selectedPosition == "RB" && rbLimitContainer[team] >= rbLimit) 
+                            if (it->second[0] == "QB" && qbLimitContainer[team] >= qbLimit)
                             {
                                 std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
                             }
-                            else if (selectedPosition == "WR" && wrLimitContainer[team] >= wrLimit) 
+                            else if (it->second[0] == "RB" && rbLimitContainer[team] >= rbLimit)
+                            {
+                                std::cout << "Moving to next player" << std::endl;
+                                std::advance(it, 1);;
+                            }
+                            else if (it->second[0] == "WR" && wrLimitContainer[team] >= wrLimit)
                             {
                                 std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
                             }
-                            else if (selectedPosition == "TE" && teLimitContainer[team] >= teLimit) 
+                            else if (it->second[0] == "TE" && teLimitContainer[team] >= teLimit)
                             {
                                 std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
@@ -271,9 +269,9 @@ public:
 
                         }
 
-                        updatePositionCount(team, selectedPosition);
-                        std::cout << playerCount << ". " << team << " selects: " << selectedPlayer << ", " << it->second[0] << std::endl;
-                        teamPlayerMap[team][selectedPlayer] = it->second[0];   // updates the team map for each team
+                        updatePositionCount(team, it->second[0]);
+                        std::cout << playerCount << ". " << team << " selects: " << it->first << ", " << it->second[0] << std::endl;
+                        teamPlayerMap[team][it->first] = it->second[0];   // updates the team map for each team
                         top300.erase(it); // erases player selected from the top300 container
                         ++playerCount;
                         // takePosition(it->second[0]);
