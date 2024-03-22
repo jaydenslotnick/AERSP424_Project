@@ -43,7 +43,7 @@ public:
 
     void originalOperate() {
 
-        std::cout << "Draft Types (1 - standard, 2 - ppr, 3 - superflex): " << std::endl;
+        std::cout << "Draft Types (1 - standard, 2 - ppr, 3 - half ppr): " << std::endl;
         while (!valid)
         {
 
@@ -88,13 +88,13 @@ public:
             {
                 std::cout << "\n2. Top 300 PPR Format: \n" << std::endl;
 
-                // opens the NFL Top 300 file
-                std::ifstream NFL_Top_300("NFL_TOP_300.csv");
+                // opens the ppr Top 300 file
+                std::ifstream PPR_Top_300("PPR_TOP_300.csv");
 
 
-                // copies the map into the top300
+                // copies the map into the ppr top300
                 std::string line;
-                while (std::getline(NFL_Top_300, line)) {
+                while (std::getline(PPR_Top_300, line)) {
                     std::istringstream iss(line);
                     std::vector<std::string> columns;
                     std::string column;
@@ -114,8 +114,8 @@ public:
                 // Printing the map using overloaded operator
                 std::cout << *this;
 
-                // closes nfl top 300 file
-                NFL_Top_300.close();
+                // closes ppr top 300 file
+                PPR_Top_300.close();
                 valid = true;
             }
 
@@ -123,15 +123,15 @@ public:
             else if (rank == 3)
             {
 
-                std::cout << "\n3. Top 300 Superflex Format: \n" << std::endl;
+                std::cout << "\n3. Top 300 Half PPR Format: \n" << std::endl;
 
-                // opens the NFL Top 300 file
-                std::ifstream NFL_Top_300("NFL_TOP_300.csv");
+                // opens the half ppr Top 300 file
+                std::ifstream Half_PPR_Top_300("Half_PPR_Top_300.csv");
 
 
-                // copies the map into the top300
+                // copies the map into the half ppr top300
                 std::string line;
-                while (std::getline(NFL_Top_300, line)) {
+                while (std::getline(Half_PPR_Top_300, line)) {
                     std::istringstream iss(line);
                     std::vector<std::string> columns;
                     std::string column;
@@ -151,8 +151,8 @@ public:
                 // Printing the map using overloaded operator
                 std::cout << *this;
 
-                // closes nfl top 300 file
-                NFL_Top_300.close();
+                // closes half ppr top 300 file
+                Half_PPR_Top_300.close();
                 valid = true;
             }
         }

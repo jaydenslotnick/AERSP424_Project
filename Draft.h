@@ -14,7 +14,7 @@
 class draft {
 private:
 
-
+    std::string draftFileName;      // stores the name of the chosen draft CSV file
     std::string player;
     unsigned int lineNumber = 0;
     std::vector<std::string> leagueMembers;
@@ -76,7 +76,7 @@ private:
 public:
     static int totalDrafts;
 
-    draft(const std::vector<std::string>& members, int qb, int rb, int wr, int te, int roundLimit) : leagueMembers(members), qbLimit(qb), rbLimit(rb), wrLimit(wr), teLimit(te), roundLimit(roundLimit) 
+    draft(const std::vector<std::string>& members, int qb, int rb, int wr, int te, int roundLimit, int draftType) : leagueMembers(members), qbLimit(qb), rbLimit(rb), wrLimit(wr), teLimit(te), roundLimit(roundLimit) 
     {
         for (const auto& team : leagueMembers)
         {
@@ -84,7 +84,23 @@ public:
         }
         ++totalDrafts;
         positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} };
-
+        
+        // Determine the draft CSV file to use based on the chosen draft type
+        switch (draftType)
+        {
+        case 1:
+            draftFileName = "NFL_Top_300.csv";
+            break;
+        case 2:
+            draftFileName = "PPR_Top_300.csv";
+            break;
+        case 3: 
+            draftFileName = "Half_PPR_Top_300.csv";
+            break;
+        default:
+            std::cerr << "Invalid draft type." << std::endl;
+            break;
+        }
         
         // resizes positional limit containers based on number of league members
         for (const auto& member : members) {
@@ -396,30 +412,38 @@ public:
 
 
     // operates and runs the functions above
-    void operate() {
+    void operate() 
+    {
 
         std::cout << "" << std::endl;
         std::cout << "Enter your Team (name): " << std::endl;
         std::cin >> ownTeam;
         std::cout << "" << std::endl;
 
+        std::ifstream draftFile(draftFileName);     // open the chosen draft CSV file
+        if (!draftFile.is_open())
+        {
+            std::cerr << "Failed to open draft file: " << draftFileName << std::endl;
+            return;
+        }
+
         // opens the NFL Top 300 file
-        std::ifstream NFL_Top_300("NFL_TOP_300.csv");
+        /*std::ifstream NFL_Top_300("NFL_TOP_300.csv");
         std::ifstream qb("QB.csv");
         std::ifstream rb("RB.csv");
         std::ifstream wr("WR.csv");
-        std::ifstream te("TE.csv");
+        std::ifstream te("TE.csv");*/
 
 
         // Verifies that the file can be opened
-        if (!NFL_Top_300.is_open() || !qb.is_open() || !rb.is_open() || !wr.is_open() || !te.is_open()) {
-            std::cerr << "Failed to open." << std::endl;
-        }
+        //if (!NFL_Top_300.is_open() || !qb.is_open() || !rb.is_open() || !wr.is_open() || !te.is_open()) {
+        //    std::cerr << "Failed to open." << std::endl;
+        //}
 
 
         // copies the map into the top300
         std::string line;
-        while (std::getline(NFL_Top_300, line)) {
+        while (std::getline(draftFile, line)) {
             std::istringstream iss(line);
             std::vector<std::string> columns;
             std::string column;
@@ -439,13 +463,13 @@ public:
 
 
         // close files
-        NFL_Top_300.close();
-        qb.close();
-        rb.close();
-        wr.close();
-        te.close();
+        //NFL_Top_300.close();
+        //qb.close();
+        //rb.close();
+        //wr.close();
+        //te.close();
 
-
+        draftFile.close();
     }
 
 

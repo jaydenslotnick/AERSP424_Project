@@ -13,19 +13,13 @@ int draft::totalDrafts = 0;
 
 int main()
 {
+	int draftType;
 
+	std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
+	std::cin >> draftType;
 
-
-	int draftType1 = 1;
-	int draftType2 = 2;
-	int draftType3 = 3;
-
-	ranking standard(draftType1);
-	standard.originalOperate();
-	ranking ppr(draftType2);
-	ppr.originalOperate();
-	ranking superflex(draftType3);
-	superflex.originalOperate();
+	ranking draftRanking(draftType);
+	draftRanking.originalOperate();
 
 
 	CustomLeague myLeague("", 0);
@@ -36,7 +30,7 @@ int main()
 
 	// testing draft file
 	
-	draft testDraft(myLeague.addMembers(), myLeague.getQbLimit(), myLeague.getRbLimit(), myLeague.getWrLimit(), myLeague.getTeLimit(), myLeague.getRoundLimit());
+	draft testDraft(myLeague.addMembers(), myLeague.getQbLimit(), myLeague.getRbLimit(), myLeague.getWrLimit(), myLeague.getTeLimit(), myLeague.getRoundLimit(), draftType);
 	
 	testDraft.operate();
 	std::cout << "Number of drafts completed: " << draft::totalDrafts << std::endl;
