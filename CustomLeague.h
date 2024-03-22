@@ -65,32 +65,28 @@ public:
                 std::cout << "Please enter a valid league name consisting only of letters and spaces." << std::endl;
             }
 
-            //validLeagueName = true;
-            //for (char c : leagueName)       // iterates over each character in the string leagueName
-            //{
-            //    if (!std::isalpha(c) && c != ' ')       // make sure the user enters only letters or spaces for the league name
-            //    {
-            //        validLeagueName = false;
-            //        break;
-            //    }
-            //}
-            //if (!validLeagueName)                     // prints an error message if the user enters an invalid name
-            //{
-            //    std::cout << "Please enter a valid league name consisting only of letters and spaces." << std::endl;
-            //}
         }
         std::cout << "League name entered: " << leagueName << std::endl;
 
         // Lambda function for input validation and assignment for the positional limits
-        auto positionLimitValidation = [](int& limit) {
-            while (true) {
+        auto positionLimitValidation = [](int& limit) 
+            {
+
+            // forces user to enter a positive integer for the position limit
+            while (true) 
+            {
                 std::cin >> limit;
-                if (std::cin.fail()) {
-                    std::cout << "Invalid input. Please enter an integer." << std::endl;
+               
+                if (std::cin.fail() || limit < 0) 
+                {
+                    std::cout << "Invalid input. Please enter a positive integer." << std::endl;
                     std::cin.clear(); // clears the invalid input
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
                 }
-                else {
+
+                // breaks out of the loop if the user entered a valid input
+                else 
+                {
                     break;
                 }
             }
@@ -100,18 +96,21 @@ public:
         auto roundLimitValidation = [](int& roundLimit, int& qbLimit, int& rbLimit, int& wrLimit, int& teLimit) {
 
             bool validRoundLimit = false;
+
+            // forces user to enter a positive integer that is less than or equal to the sum of the position limits
             while (!validRoundLimit)
             {
                 std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
                 std::cin >> roundLimit;
 
-                if (std::cin.fail())
+                if (std::cin.fail() || roundLimit < 0)
                 {
                     std::cout << "\nInvalid input. Please enter a valid number." << std::endl;
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
 
+                // breaks out of the loop
                 else if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
                 {
                     validRoundLimit = true;

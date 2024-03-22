@@ -69,6 +69,8 @@ private:
     int tecount = 0;
 
 
+    bool validChar = false;
+
     
 
 public:
@@ -113,27 +115,53 @@ public:
 
     // asks the user whether they would like to see more top players available
     void promptForMorePlayers() {
-        std::cout << "Do you wish to see more players? (y/n)" << std::endl;
-        std::cin >> morePlayers;
 
-        // will run until user does not want to see any more new players
-        while (morePlayers == 'y')
+
+        // asks user if they want to see more players, forces them to enter y or n or Y or N
+        while (validChar == false)
         {
-            std::cout << "Enter number of players you would like to see: " << std::endl;
-            std::cin >> numPlayers;
 
-            displayTopPlayers(numPlayers);
-
-            std::cout << "" << std::endl;
+            // prompts user
             std::cout << "Do you wish to see more players? (y/n)" << std::endl;
             std::cin >> morePlayers;
+
+
+            // condition if they enter the wrong item, the loop will run again
+            if (morePlayers != 'y' && morePlayers != 'n' && morePlayers != 'Y' && morePlayers != 'N')
+            {
+                std::cout << "\nInvalid input. Please enter 'y' or 'n' \n" << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+
+            // if the user enters y or Y, the loop will run again to continue to see if they want more players
+            else if (morePlayers == 'y' || morePlayers == 'Y')
+            {
+                std::cout << "Enter number of players you would like to see: " << std::endl;
+                std::cin >> numPlayers;
+
+                displayTopPlayers(numPlayers);
+                validChar = false;
+            }
+
+            // breaks while loop, this is if the user enters n or N
+            else
+            {
+                validChar = true;
+            }
         }
+
+        // resets the validChar variable so the next time the function is called, the while loop will run
+        validChar = false;
+
     }
 
     // Function to update the count of positions taken by a team
     void updatePositionCount(const std::string& team, const std::string& position) 
     {
       
+        // each time a position is picked for a team, it'll update the container for each team to 
+        // keep track of how many of each position they have taken
         if (position == "QB") {
             ++qbLimitContainer[team];
         }
