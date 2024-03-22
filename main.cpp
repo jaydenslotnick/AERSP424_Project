@@ -14,17 +14,24 @@ int draft::totalDrafts = 0;
 int main()
 {
 
-	ranking top300Ranking;
-
-	// introducing a thread to complete the ranking operation
-	std::thread rankingThread(&ranking::originalOperate, &top300Ranking);
-
-	rankingThread.join(); // joins ranking thread to the main thread
 
 
-	//creates league and calls function to add members
+	int draftType1 = 1;
+	int draftType2 = 2;
+	int draftType3 = 3;
+
+	ranking standard(draftType1);
+	standard.originalOperate();
+	ranking ppr(draftType2);
+	ppr.originalOperate();
+	ranking superflex(draftType3);
+	superflex.originalOperate();
+
+
 	CustomLeague myLeague("", 0);
-	myLeague.getLeagueInfo();
+	std::thread leagueThread(&CustomLeague::getLeagueInfo, &myLeague);
+	// Wait for the thread to finish its execution
+	leagueThread.join();
  
 
 	// testing draft file
