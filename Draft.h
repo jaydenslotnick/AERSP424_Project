@@ -92,10 +92,10 @@ public:
             draftFileName = "NFL_Top_300.csv";
             break;
         case 2:
-            draftFileName = "PPR_Top_300.csv";
+            draftFileName = "PPR_Top300.csv";
             break;
         case 3: 
-            draftFileName = "Half_PPR_Top_300.csv";
+            draftFileName = "Half_PPR_Top300.csv";
             break;
         default:
             std::cerr << "Invalid draft type." << std::endl;

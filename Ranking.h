@@ -89,7 +89,7 @@ public:
                 std::cout << "\n2. Top 300 PPR Format: \n" << std::endl;
 
                 // opens the ppr Top 300 file
-                std::ifstream PPR_Top_300("PPR_TOP_300.csv");
+                std::ifstream PPR_Top_300("PPR_Top300.csv");
 
 
                 // copies the map into the ppr top300
@@ -126,7 +126,7 @@ public:
                 std::cout << "\n3. Top 300 Half PPR Format: \n" << std::endl;
 
                 // opens the half ppr Top 300 file
-                std::ifstream Half_PPR_Top_300("Half_PPR_Top_300.csv");
+                std::ifstream Half_PPR_Top_300("Half_PPR_Top300.csv");
 
 
                 // copies the map into the half ppr top300
