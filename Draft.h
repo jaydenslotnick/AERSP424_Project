@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <random>
+#include <limits>
 
 #ifndef DRAFT_H
 #define DRAFT_H
@@ -153,8 +154,32 @@ public:
             // if the user enters y or Y, the loop will run again to continue to see if they want more players
             else if (morePlayers == 'y' || morePlayers == 'Y')
             {
-                std::cout << "Enter number of players you would like to see: " << std::endl;
-                std::cin >> numPlayers;
+                while (true)
+                {
+                    std::cout << "Enter number of players you would like to see: " << std::endl;
+                    std::cin >> numPlayers;
+                    if (std::cin.fail() || numPlayers < 0)
+                    {
+                        std::cout << "Invalid input. Please enter a positive integer." << std::endl;
+                        std::cin.clear(); // clears the invalid input
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
+
+                    }
+                    else
+                    {
+                        char nextChar;
+                        if (std::cin.get(nextChar) && nextChar != '\n') 
+                        {
+                            std::cout << "Invalid input. Please enter an integer." << std::endl;
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard remaining input
+                        }
+                        else 
+                        {
+                            // Input is a valid integer
+                            break;
+                        }
+                    }
+                }
 
                 displayTopPlayers(numPlayers);
                 validChar = false;
@@ -198,9 +223,23 @@ public:
     // receives user input for the pick that they want
     void getUserPick() {
         std::cout << "It is your turn to pick!" << std::endl;
-        std::cout << "Enter desired player (number only): " << std::endl;
-        std::cin >> tempPlayer;
-        std::cout << "" << std::endl;
+
+        int tempPlayer;
+
+        do {
+            std::cout << "Enter desired player (number only): " << std::endl;
+            std::cin >> tempPlayer;
+            std::cout << "" << std::endl;
+
+            if (std::cin.fail() || tempPlayer <= 0)
+            {
+                std::cout << "Invalid input. Please enter a positive integer.\n";
+                std::cin.clear(); // Clear error flags
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard input buffer
+            }
+        }
+        while (tempPlayer <= 0);
+        std::cout << "You entered: " << tempPlayer << std::endl;
 
         // Ensure that the position limit is not exceeded
         while (true) 
@@ -420,7 +459,7 @@ public:
     {
 
         std::cout << "" << std::endl;
-        std::cout << "Enter your Team (name): " << std::endl;
+        std::cout << "Enter your Team (name). If you want to autodraft, enter any character that is not already a team name: " << std::endl;
         std::cin >> ownTeam;
         std::cout << "" << std::endl;
 
