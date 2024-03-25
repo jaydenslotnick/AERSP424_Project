@@ -22,8 +22,21 @@ int main()
 
 	while (userDraft == false)
 	{
-		std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
-		std::cin >> draftType;
+		do {
+			std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
+			std::cin >> draftType;
+
+			if (std::cin.fail() || draftType < 1 || draftType > 3)
+			{
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Invalid Input. Please enter 1, 2, or 3." << std::endl;
+			}
+			else
+			{
+				break;
+			}
+		} while (true);
 
 		// logic for the standard draft format
 		if (draftType == 1)
@@ -40,22 +53,25 @@ int main()
 
 			standardDraft.operate();
 
+			while (true)
+			{
+				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
+				std::cin >> anotherDraft;
 
-			std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
-			std::cin >> anotherDraft;
-
-			if (anotherDraft == 'y' || anotherDraft == 'Y')
-			{
-				userDraft = false;
-			}
-			else if (anotherDraft == 'n' || anotherDraft == 'N')
-			{
-				userDraft = true;
-			}
-			else
-			{
-				std::cout << "Enter a y/n: " << std::endl;
-				std::cin >> userDraft;
+				if (anotherDraft == 'y' || anotherDraft == 'Y')
+				{
+					userDraft = false;
+					break;
+				}
+				else if (anotherDraft == 'n' || anotherDraft == 'N')
+				{
+					userDraft = true;
+					break;
+				}
+				else
+				{
+					std::cout << "Invalid input. " << std::endl;
+				}
 			}
 
 		}
@@ -75,21 +91,25 @@ int main()
 
 			PPRDraft.operate();
 
-			std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
-			std::cin >> anotherDraft;
+			while (true)
+			{
+				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
+				std::cin >> anotherDraft;
 
-			if (anotherDraft == 'y' || anotherDraft == 'Y')
-			{
-				userDraft = false;
-			}
-			else if (anotherDraft == 'n' || anotherDraft == 'N')
-			{
-				userDraft = true;
-			}
-			else
-			{
-				std::cout << "Enter a y/n: " << std::endl;
-				std::cin >> userDraft;
+				if (anotherDraft == 'y' || anotherDraft == 'Y')
+				{
+					userDraft = false;
+					break;
+				}
+				else if (anotherDraft == 'n' || anotherDraft == 'N')
+				{
+					userDraft = true;
+					break;
+				}
+				else
+				{
+					std::cout << "Invalid input. " << std::endl;
+				}
 			}
 		}
 
@@ -109,28 +129,32 @@ int main()
 
 			HalfPPRDraft.operate();
 
-			std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
-			std::cin >> anotherDraft;
+			while (true)
+			{
+				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
+				std::cin >> anotherDraft;
 
-			if (anotherDraft == 'y' || anotherDraft == 'Y')
-			{
-				userDraft = false;
-			}
-			else if (anotherDraft == 'n' || anotherDraft == 'N')
-			{
-				userDraft = true;
-			}
-			else
-			{
-				std::cout << "Enter a y/n: " << std::endl;
-				std::cin >> userDraft;
+				if (anotherDraft == 'y' || anotherDraft == 'Y')
+				{
+					userDraft = false;
+					break;
+				}
+				else if (anotherDraft == 'n' || anotherDraft == 'N')
+				{
+					userDraft = true;
+					break;
+				}
+				else
+				{
+					std::cout << "Invalid input. " << std::endl;
+				}
 			}
 		}
 
-		else
+		/*else		dont think this is needed anymore
 		{
 			std::cout << "Enter a number 1-3" << std::endl;
-		}
+		}*/
 	}
 
 

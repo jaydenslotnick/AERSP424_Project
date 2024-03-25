@@ -103,7 +103,7 @@ public:
                 std::cout << "\nEnter number of rounds (must be less than or equal to the total roster limit): " << std::endl;
                 std::cin >> roundLimit;
 
-                if (std::cin.fail() || roundLimit < 0)
+                if (std::cin.fail() || roundLimit <= 0)
                 {
                     std::cout << "\nInvalid input. Please enter a valid number." << std::endl;
                     std::cin.clear();
@@ -173,7 +173,28 @@ public:
         for (int i = 0; i < numMembers; ++i) {
             std::string name;
             std::cout << "Enter name for member (enter in draft order) " << (i + 1) << ": ";
-            std::cin >> name;
+            while (true)
+            {
+                std::cin >> name;
+
+                bool isValid = true;
+                for (char c : name)
+                {
+                    if (!std::isalpha(c))
+                    {
+                        isValid = false;
+                        break;
+                    }
+                }
+                if (isValid)
+                {
+                    break;  // exit the loop if the name is valid
+                }
+                else
+                {
+                    std::cout << "Invalid input. Please enter a valid name: ";
+                }
+            }
             leagueMembers[i] = name;
         }
 
