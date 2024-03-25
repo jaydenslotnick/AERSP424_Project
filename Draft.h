@@ -285,44 +285,48 @@ public:
                         bool positionCheck = false;
                         while (positionCheck == false)
                         {
-                            
+                            // comment in the "moving to next player" lines for debugging purposes to see where the draft gets stuck
                             if (it->second[0] == "QB" && qbLimitContainer[team] >= qbLimit)
                             {
-                                std::cout << "Moving to next player" << std::endl;
+                                //std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
                             }
                             else if (it->second[0] == "RB" && rbLimitContainer[team] >= rbLimit)
                             {
-                                std::cout << "Moving to next player" << std::endl;
-                                std::advance(it, 1);;
+                                //std::cout << "Moving to next player" << std::endl;
+                                std::advance(it, 1);
                             }
                             else if (it->second[0] == "WR" && wrLimitContainer[team] >= wrLimit)
                             {
-                                std::cout << "Moving to next player" << std::endl;
+                                //std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
                             }
                             else if (it->second[0] == "TE" && teLimitContainer[team] >= teLimit)
                             {
-                                std::cout << "Moving to next player" << std::endl;
+                                //std::cout << "Moving to next player" << std::endl;
                                 std::advance(it, 1);
+
                             }
-                            else 
+                            else
                             {
                                 positionCheck = true;
                             }
 
                         }
 
-                        updatePositionCount(team, it->second[0]);
-                        std::cout << playerCount << ". " << team << " selects: " << it->first << ", " << it->second[0] << std::endl;
-                        teamPlayerMap[team][it->first] = it->second[0];   // updates the team map for each team
-                        top300.erase(it); // erases player selected from the top300 container
-                        ++playerCount;
-                        // takePosition(it->second[0]);
-                    }
-                    else 
-                    {
-                        std::cerr << "Error: player not found for round " << round << std::endl;
+                        if (it->second[0] == "void")
+                        {
+                            std::cout << "No more of the position desired available, voiding pick" << std::endl;
+                        }
+                        else
+                        {
+                            updatePositionCount(team, it->second[0]);
+                            std::cout << playerCount << ". " << team << " selects: " << it->first << ", " << it->second[0] << std::endl;
+                            teamPlayerMap[team][it->first] = it->second[0];   // updates the team map for each team
+                            top300.erase(it); // erases player selected from the top300 container
+                            ++playerCount;
+                        }
+
                     }
                 }
                 ++teamIndex;

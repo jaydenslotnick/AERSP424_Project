@@ -159,7 +159,6 @@ Michael Wilson,WR
 Darius Slayton,WR
 Adonai Mitchell,WR
 Michael Mayer,TE
-Baltimore Ravens DST,DST
 Khalil Shakir,WR
 Darren Waller,TE
 Wan'Dale Robinson,WR
@@ -167,84 +166,57 @@ Aaron Rodgers,QB
 Dontayvion Wicks,WR
 Braelon Allen,RB
 Geno Smith,QB
-San Francisco 49ers DST,DST
 D'Onta Foreman,RB
 Baker Mayfield,QB
 Odell Beckham Jr.,WR
-Justin Tucker,K
 Kenneth Gainwell,RB
 Rashod Bateman,WR
 Troy Franklin,WR
-Dallas Cowboys DST,DST
-Brandon Aubrey,K
 Jalin Hyatt,WR
 Darnell Mooney,WR
 Tucker Kraft,TE
-Cleveland Browns DST,DST
-Miami Dolphins DST,DST
 Daniel Jones,QB
 Jayden Daniels,QB
-Buffalo Bills DST,DST
 Devontez Walker,WR
 Rico Dowdle,RB
 Ladd McConkey,WR
 Demario Douglas,WR
 Treylon Burks,WR
 DJ Chark Jr.,WR
-New York Jets DST,DST
 Luke Musgrave,TE
-Jason Sanders,K
 Zay Jones,WR
 Juwan Johnson,TE
-Jake Elliott,K
 Tyler Boyd,WR
 Jamaal Williams,RB
 Alec Pierce,WR
 Ja'Lynn Polk,WR
 Clyde Edwards-Helaire,RB
 Derek Carr,QB
-Harrison Butker,K
-Philadelphia Eagles DST,DST
 Isaiah Likely,TE
-Kansas City Chiefs DST,DST
 Malachi Corley,WR
-New Orleans Saints DST,DST
 Justice Hill,RB
-Tyler Bass,K
 Hunter Henry,TE
 Michael Thomas,WR
 Ja'Tavion Sanders,TE
 Xavier Worthy,WR
 Audric Estime,RB
 Roman Wilson,WR
-Pittsburgh Steelers DST,DST
 Michael Gallup,WR
-Minnesota Vikings DST,DST
 Jonathan Mingo,WR
-Denver Broncos DST,DST
-Jake Moody,K
 Russell Wilson,QB
 Kareem Hunt,RB
 Xavier Legette,WR
 Will Levis,QB
 Taysom Hill,TE
-Younghoe Koo,K
-Ka'imi Fairbairn,K
-Chicago Bears DST,DST
 Andrei Iosivas,WR
 Jordan Mason,RB
 Bryce Young,QB
-Cameron Dicker,K
-New England Patriots DST,DST
 Demarcus Robinson,WR
 Rondale Moore,WR
 K.J. Osborn,WR
 Pierre Strong Jr.,RB
-Houston Texans DST,DST
 Josh Reynolds,WR
-Dustin Hopkins,K
 Jerick McKinnon,RB
-Evan McPherson,K
 Drake Maye,QB
 Jeff Wilson Jr.,RB
 Cedric Tillman,WR
@@ -252,16 +224,11 @@ Chigoziem Okonkwo,TE
 Cade Otton,TE
 A.T. Perry,WR
 Kendrick Bourne,WR
-Matt Gay,K
 Michael Carter,RB
 Ray Davis,RB
-Cairo Santos,K
 Jalen McMillan,WR
-Jason Myers,K
 Tank Bigsby,RB
 DeVante Parker,WR
-Indianapolis Colts DST,DST
-Cincinnati Bengals DST,DST
 Joshua Kelley,RB
 Gerald Everett,TE
 Israel Abanikanda,RB
@@ -269,19 +236,13 @@ Emari Demercado,RB
 Trey Palmer,WR
 Samaje Perine,RB
 Kadarius Toney,WR
-Blake Grupe,K
 Tutu Atwell,WR
 Marquez Valdes-Scantling,WR
-Wil Lutz,K
 Robert Woods,WR
-Detroit Lions DST,DST
-Daniel Carlson,K
-Jacksonville Jaguars DST,DST
 Tyler Scott,WR
 Noah Fant,TE
 Chris Rodriguez Jr.,RB
 Allen Lazard,WR
-Brandon McManus,K
 Damien Harris,RB
 Tyler Higbee,TE
 Dalvin Cook,RB
@@ -292,9 +253,6 @@ Dawson Knox,TE
 Jelani Woods,TE
 Kenny Pickett,QB
 John Metchie III,WR
-Los Angeles Rams DST,DST
-Las Vegas Raiders DST,DST
 Logan Thomas,TE
-Greg Zuerlein,K
-Green Bay Packers DST,DST
 Ronnie Rivers,RB
+void,void

@@ -79,7 +79,7 @@ public:
                
                 if (std::cin.fail() || limit < 0) 
                 {
-                    std::cout << "Invalid input. Please enter a positive integer." << std::endl;
+                    std::cout << "Invalid input. Please enter 0 or a positive integer." << std::endl;
                     std::cin.clear(); // clears the invalid input
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clears the invalid input
                 }
