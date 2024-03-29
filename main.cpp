@@ -14,14 +14,16 @@ int draft::totalDrafts = 0;
 int main()
 {
 
-	int draftType;
-	bool userDraft = false;
-	char anotherDraft;
+	int draftType; // variable for the draft type
+	bool userDraft = false; // error handling if the user enters a invalid input
+	char anotherDraft; // designed for a y/n answer to whether the user wants to complete another draft
 
 
-
+	
 	while (userDraft == false)
 	{
+
+		// prompts user to choose a draft type out of 3 options and checks the validity of the input
 		do {
 			std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
 			std::cin >> draftType;
@@ -41,18 +43,25 @@ int main()
 		// logic for the standard draft format
 		if (draftType == 1)
 		{
+
+			// outputs the ranking from the standard csv
 			ranking standardRanking(draftType);
 			standardRanking.originalOperate();
 
+
+			// calls the custom league class to create a league object for the standard format 
 			CustomLeague standardLeague("", 0);
 			std::thread standardLeagueThread(&CustomLeague::getLeagueInfo, &standardLeague);
 			// Wait for the thread to finish its execution
 			standardLeagueThread.join();
 
+
+			// calls the draft function to excecute the drafting of players
 			draft standardDraft(standardLeague.addMembers(), standardLeague.getQbLimit(), standardLeague.getRbLimit(), standardLeague.getWrLimit(), standardLeague.getTeLimit(), standardLeague.getRoundLimit(), draftType);
+			standardDraft.operate(); // function that runs all the other functions in the draft class 
 
-			standardDraft.operate();
 
+			// at the conclusion of the draft, asks user whether they would like to complete another draft
 			while (true)
 			{
 				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
@@ -79,18 +88,25 @@ int main()
 		// logic for the PPR draft format
 		else if (draftType == 2)
 		{
+
+			// outputs rankings from the ppr csv file
 			ranking PPRRanking(draftType);
 			PPRRanking.originalOperate();
 
+
+			// calls the custom league class to create a league object for the ppr format
 			CustomLeague PPRLeague("", 0);
 			std::thread PPRLeagueThread(&CustomLeague::getLeagueInfo, &PPRLeague);
 			// Wait for the thread to finish its execution
 			PPRLeagueThread.join();
 
+
+			// calls the draft function to excecute the drafting of players
 			draft PPRDraft(PPRLeague.addMembers(), PPRLeague.getQbLimit(), PPRLeague.getRbLimit(), PPRLeague.getWrLimit(), PPRLeague.getTeLimit(), PPRLeague.getRoundLimit(), draftType);
+			PPRDraft.operate(); // function that runs all the other functions in the draft class 
 
-			PPRDraft.operate();
 
+			// at the conclusion of the draft, asks user whether they would like to complete another draft
 			while (true)
 			{
 				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
@@ -117,18 +133,24 @@ int main()
 		// logic for the PPR draft format
 		else if (draftType == 3)
 		{
+
+			// outputs the rankings for the half ppr csv file
 			ranking HalfPPRRanking(draftType);
 			HalfPPRRanking.originalOperate();
 
+			// calls the custom league class to create a league object for the half ppr format
 			CustomLeague HalfPPRLeague("", 0);
 			std::thread HalfPPRLeagueThread(&CustomLeague::getLeagueInfo, &HalfPPRLeague);
 			// Wait for the thread to finish its execution
 			HalfPPRLeagueThread.join();
 
+
+			// calls the draft function to excecute the drafting of players
 			draft HalfPPRDraft(HalfPPRLeague.addMembers(), HalfPPRLeague.getQbLimit(), HalfPPRLeague.getRbLimit(), HalfPPRLeague.getWrLimit(), HalfPPRLeague.getTeLimit(), HalfPPRLeague.getRoundLimit(), draftType);
+			HalfPPRDraft.operate(); // function that runs all the other functions in the draft class 
 
-			HalfPPRDraft.operate();
 
+			// at the conclusion of the draft, asks user whether they would like to complete another draft
 			while (true)
 			{
 				std::cout << "Would you like to complete another draft (y/n)? " << std::endl;
@@ -150,16 +172,11 @@ int main()
 				}
 			}
 		}
-
-		/*else		dont think this is needed anymore
-		{
-			std::cout << "Enter a number 1-3" << std::endl;
-		}*/
 	}
 
 
 
-	std::cout << "Number of drafts completed: " << draft::totalDrafts << std::endl;
+	std::cout << "Number of drafts completed: " << draft::totalDrafts << std::endl; // ouputs total number of drafts completed
 
 
 	return 0;

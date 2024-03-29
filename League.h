@@ -15,7 +15,8 @@ protected:
 
 public:
 
-	League(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {}
+    // constructor, pass in league name and number of teams
+	League(const std::string& name, int numTeams) : leagueName(name), numMembers(numTeams){}
 
 	virtual ~League() {}
 

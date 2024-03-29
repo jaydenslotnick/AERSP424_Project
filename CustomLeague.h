@@ -9,21 +9,29 @@
 #ifndef CUSTOMLEAGUE_H
 #define CUSTOMLEAGUE_H
 
-int maxLeagueMembers = 16;
 
+
+
+
+// derived class from the base class league
 class CustomLeague : public League {
 private:
-    int numMembers;
-    std::string leagueName;
-    std::vector<std::string> leagueMembers;
-    std::string* ptrToLeague = &leagueName;         // creates a pointer to the memory address of the league name
+    int numMembers; // number of league members
+    std::string leagueName; // league name variable
+    std::vector<std::string> leagueMembers; // container for the league members
+    std::string* ptrToLeague = &leagueName; // creates a pointer to the memory address of the league name
+    int maxLeagueMembers = 16; // maximum league members this code will support
 
+    // positional and round limits
+    // qb - quarterback, rb - running back, wr - wide receiver, te - tight end
     int qbLimit = 0;
     int rbLimit = 0;
     int wrLimit = 0;
     int teLimit = 0;
     int roundLimit = 0;
 
+
+    // error handling if the user enters a wrong input
     bool validqbLimit = false;
     bool validrbLimit = false;
     bool validwrLimit = false;
@@ -32,17 +40,19 @@ private:
 
 
 public:
-    // Constructor
+    // Constructor, passes in league name and number of teams
     CustomLeague(const std::string& name, int numTeams) : League(name, numTeams), leagueName(name), numMembers(numTeams), leagueMembers(numTeams) {
 
-        std::cout << "\nLeague created with ID#: " << ptrToLeague << std::endl;
+        std::cout << "\nLeague created with ID#: " << ptrToLeague << std::endl; // outputs memory address of where league is created
     };
 
 
 
 
-    // Asks for user input of the league
+    // virtual function to ask for user input of the league
     void getLeagueInfo() override {
+
+        // checks to make sure the user input a valid league name
         bool validLeagueName = false;
         while (!validLeagueName)
         {
@@ -110,7 +120,7 @@ public:
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
 
-                // breaks out of the loop
+                // breaks out of the loop if valid round limit input
                 else if (roundLimit <= qbLimit + rbLimit + wrLimit + teLimit)
                 {
                     validRoundLimit = true;
@@ -123,8 +133,7 @@ public:
             }
             };
 
-        // position and round limits
-
+        // prompts user for position and round limits and calls lambda functions to execute
         std::cout << "Enter QB Limit: " << std::endl;
         positionLimitValidation(qbLimit);
 
@@ -145,7 +154,7 @@ public:
 
 
 
-
+        // prompts user for league member number and checks to make sure it was a valid input
         bool validNumMembers = false;
         while (!validNumMembers)
         {
@@ -166,11 +175,13 @@ public:
         std::cout << "You entered: " << numMembers << std::endl;
     }
 
-
+    // virtual function to add members to the league
     std::vector<std::string> addMembers() override {
         leagueMembers.resize(numMembers); // Resize the vector to accommodate numMembers
 
         for (int i = 0; i < numMembers; ++i) {
+
+            // prompts user to enter the names of the league members in the correct draft order
             std::string name;
             std::cout << "Enter name for member (enter in draft order) " << (i + 1) << ": ";
             while (true)
@@ -198,6 +209,8 @@ public:
             leagueMembers[i] = name;
         }
 
+
+        // Welcome message and outputs the league members
         std::cout << "\nWelcome to " << leagueName << " Fantasy Football League\n";
         std::cout << "Fantasy Football League Members:\n";
 
@@ -208,7 +221,7 @@ public:
         return leagueMembers; // Return the populated member list
     }
 
-    // Accessor functions for position limits and round limit
+    // Virtual accessor functions for position limits and round limit
     int getQbLimit() override
     {
         return qbLimit;

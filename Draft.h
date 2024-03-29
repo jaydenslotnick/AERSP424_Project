@@ -16,26 +16,22 @@ class draft {
 private:
 
     std::string draftFileName;      // stores the name of the chosen draft CSV file
-    std::string player;
-    unsigned int lineNumber = 0;
-    std::vector<std::string> leagueMembers;
-    unsigned int qbLimit = 0;
-    unsigned int rbLimit = 0;
-    unsigned int wrLimit = 0;
-    unsigned int teLimit = 0;
-    unsigned int currentRound = 0;
-    unsigned int roundLimit = 0;
-    unsigned int tempPlayer = 0;
-    unsigned int playerCount = 1;
-    unsigned char morePlayers = 0;
-    unsigned int numPlayers = 0;
-    unsigned int defaultPlayers = 10;
+    std::string player; // name of an nfl player
+    unsigned int lineNumber = 0; // keeps track of line number of the csv
+    std::vector<std::string> leagueMembers; // container with the league members names
+    unsigned int qbLimit = 0; // quarterback limit variable
+    unsigned int rbLimit = 0; // running back limit variable
+    unsigned int wrLimit = 0; // wide receiver limit variable
+    unsigned int teLimit = 0; // tight end limit variable
+    unsigned int currentRound = 0; // keeps track of the current round of the draft
+    unsigned int roundLimit = 0; // limit variable for the number of rounds of the draft
+    unsigned int tempPlayer = 0; // temporary variable to start the player selected 
+    unsigned int playerCount = 1; // keeps track of the number of players selected, starts at 1
+    unsigned char morePlayers = 0; // variable designed to start a y/n response to a question of whether the user wants to see more players
+    unsigned int numPlayers = 0; // Outputs the number of players remaining, "Top numPlayers remaining"
+    unsigned int defaultPlayers = 10; // default outputs the top 10 players left
 
-    unsigned int qbtaken = 0;
-    unsigned int rbtaken = 0;
-    unsigned int wrtaken = 0;
-    unsigned int tetaken = 0;
-    signed int indexHelper = -1;
+    signed int indexHelper = -1; // variable used to help simplify code, reduce the number of "magic numbers" used
 
 
     // average salaries of starting nfl players in millions
@@ -47,15 +43,14 @@ private:
     // total estimated salary spent on team 
     double totalSalarySpent = 0.0;
 
-    std::vector<std::pair<std::string, std::vector<std::string>>> top300;
-    std::string line;
-    std::string ownTeam;
+    std::vector<std::pair<std::string, std::vector<std::string>>> top300; // container used to store the players from a csv file
+    std::string line; // variable used to store line of the csv
+    std::string ownTeam; // variable for user controlled team
 
-    // create a map of maps to store each drafters picks
-    std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;
-    std::map<std::string, int> positionLimits;
 
-    std::vector<unsigned int> availablePositions;
+    std::map<std::string, std::map<std::string, std::string>> teamPlayerMap;     // create a map of maps to store each drafters picks
+
+    std::map<std::string, int> positionLimits; // container to store the limits of positions
 
     int pick = 0;
 
@@ -64,27 +59,26 @@ private:
     std::map<std::string, int> rbLimitContainer; // Key: Team name, Value: Count of RBs taken
     std::map<std::string, int> wrLimitContainer; // Key: Team name, Value: Count of WRs taken
     std::map<std::string, int> teLimitContainer; // Key: Team name, Value: Count of TEs taken
-    int qbcount = 0;
-    int rbcount = 0;
-    int wrcount = 0;
-    int tecount = 0;
 
-
-    bool validChar = false;
+    bool validChar = false; // used for error handling if a user does not enter a valid character
 
     
 
 public:
-    static int totalDrafts;
+    static int totalDrafts; // keeps track of total drafts completed
 
+
+    // constructor, passes in the league members, positions limits, round limit, and the draft type
     draft(const std::vector<std::string>& members, int qb, int rb, int wr, int te, int roundLimit, int draftType) : leagueMembers(members), qbLimit(qb), rbLimit(rb), wrLimit(wr), teLimit(te), roundLimit(roundLimit) 
     {
+
+        // populates the team player map with the league members
         for (const auto& team : leagueMembers)
         {
             teamPlayerMap[team] = std::map<std::string, std::string>();
         }
-        ++totalDrafts;
-        positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} };
+        ++totalDrafts; // increases total drafts completed
+        positionLimits = { {"QB",qbLimit}, {"RB",rbLimit}, {"WR", wrLimit}, {"TE", teLimit} }; // fills container with limits for each respective position
         
         // Determine the draft CSV file to use based on the chosen draft type
         switch (draftType)
@@ -103,7 +97,7 @@ public:
             break;
         }
         
-        // resizes positional limit containers based on number of league members
+        // resizes positional limit containers based on number of league members, initally the number of positions taken is 0
         for (const auto& member : members) {
             qbLimitContainer[member] = 0;
             rbLimitContainer[member] = 0;
@@ -114,7 +108,7 @@ public:
        
     }
 
-    std::vector<std::string> draftOrder = leagueMembers;
+    std::vector<std::string> draftOrder = leagueMembers; // sets the draft order
 
     // Display top players with default number
     void displayTopPlayers() {
@@ -138,7 +132,7 @@ public:
         while (validChar == false)
         {
 
-            // prompts user
+            // prompts user to see if they would like to display more players available
             std::cout << "Do you wish to see more players? (y/n)" << std::endl;
             std::cin >> morePlayers;
 
@@ -181,7 +175,7 @@ public:
                     }
                 }
 
-                displayTopPlayers(numPlayers);
+                displayTopPlayers(numPlayers); // calls function to display top players remaining with user input on the number of players
                 validChar = false;
             }
 
@@ -224,8 +218,9 @@ public:
     void getUserPick() {
         std::cout << "It is your turn to pick!" << std::endl;
 
-        int tempPlayer;
+        int tempPlayer; // temp player to pick, resets after each round
 
+        // receives user input for the player they would like to select, error handling added to make sure they enter a correct input
         do {
             std::cout << "Enter desired player (number only): " << std::endl;
             std::cin >> tempPlayer;
@@ -238,13 +233,17 @@ public:
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard input buffer
             }
         }
+
+        // if valid, will output the selected player
         while (tempPlayer <= 0);
         std::cout << "You entered: " << tempPlayer << std::endl;
 
         // Ensure that the position limit is not exceeded
         while (true) 
         {
-            std::string selectedPosition = top300[tempPlayer + indexHelper].second[0];
+            std::string selectedPosition = top300[tempPlayer + indexHelper].second[0]; // sets selected position variable
+
+            // checks to see if the position limit is within bounds, will force the user to enter another player if condition is not satisfied
             if (selectedPosition == "QB" && qbLimitContainer[ownTeam] >= qbLimit) {
                 std::cout << "Error: QB positional limit exceeded. Please pick another player." << std::endl;
             }
@@ -261,6 +260,7 @@ public:
                 break; // Positional limit not exceeded, break the loop
             }
 
+            // if user exceeds position limit, this will give them the option to see more players 
             promptForMorePlayers();
 
             std::cout << "It is your turn to pick!" << std::endl;
@@ -269,12 +269,12 @@ public:
             std::cout << "" << std::endl;
         }
 
-        std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;
-        teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0];
+        std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;  // outputs selected player and position
+        teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0]; // updates the team player map
         // Update the count of positions taken by the team
-        updatePositionCount(ownTeam, top300[tempPlayer + indexHelper].second[0]);
-        top300.erase(top300.begin() + tempPlayer + indexHelper);
-        ++playerCount;
+        updatePositionCount(ownTeam, top300[tempPlayer + indexHelper].second[0]); // updates the positon that was taken for each team
+        top300.erase(top300.begin() + tempPlayer + indexHelper); // erases player from ranking container
+        ++playerCount; // increases player count variable
     }
 
 
@@ -325,6 +325,7 @@ public:
                         while (positionCheck == false)
                         {
                             // comment in the "moving to next player" lines for debugging purposes to see where the draft gets stuck
+                            // if the position limit is violated, the next player that satisfies conditions will be selected
                             if (it->second[0] == "QB" && qbLimitContainer[team] >= qbLimit)
                             {
                                 //std::cout << "Moving to next player" << std::endl;
@@ -348,15 +349,19 @@ public:
                             }
                             else
                             {
-                                positionCheck = true;
+                                positionCheck = true; // breaks loop
                             }
 
                         }
 
+
+                        // if the csv runs out of a certain position, this will be outputted to make the user aware
                         if (it->second[0] == "void")
                         {
                             std::cout << "No more of the position desired available, voiding pick" << std::endl;
                         }
+
+                        // same logic as before, outputs selected player and position, updates map, erases it, increments player
                         else
                         {
                             updatePositionCount(team, it->second[0]);
@@ -368,7 +373,7 @@ public:
 
                     }
                 }
-                ++teamIndex;
+                ++teamIndex; // advances to the team team
             }
             std::cout << std::endl;     // used to make output nicer and more read-able
         }
@@ -377,7 +382,7 @@ public:
     int pickRandomizer()
     {
         // Define the probabilities
-        std::vector<double> probabilities = { 0.4, 0.3, 0.2, 0.1 }; // Probabilities for numbers 1, 2, 3, 4 respectively
+        std::vector<double> probabilities = { 0.4, 0.3, 0.2, 0.1 }; // Probabilities for numbers 1, 2, 3, 4 respectively, adds up to 1
 
         // Create a discrete distribution based on the probabilities
         std::discrete_distribution<int> distribution({ 0.4, 0.3, 0.2, 0.1 });
@@ -401,7 +406,9 @@ public:
         for (const auto& teamEntry : teamPlayerMap)
         {
             totalSalarySpent = 0;
+            
 
+            // outputs in roster format, quarterbacks, running backs, wide receivers, tight ends
             std::cout << "Team: " << teamEntry.first << std::endl; // outputs team name
             for (const auto& playerEntry : teamEntry.second)
             {
@@ -439,16 +446,8 @@ public:
                     totalSalarySpent += teSalary;
                 }
             }
-            std::cout << "Total estimated salary: $" << totalSalarySpent << " million" << std::endl;
+            std::cout << "Total estimated salary: $" << totalSalarySpent << " million" << std::endl; // estimated salary of the team for fun
             std::cout << std::endl;     // used to make output nicer and more read-able
-
-
-            // Output number of players taken per position
-            std::cout << "Number of players taken per position:" << std::endl;
-           // std::cout << "QB: " << countPlayersTaken("QB") << std::endl;
-           // std::cout << "RB: " << countPlayersTaken("RB") << std::endl;
-           // std::cout << "WR: " << countPlayersTaken("WR") << std::endl;
-           // std::cout << "TE: " << countPlayersTaken("TE") << std::endl;
         
         }
     }
@@ -457,31 +456,20 @@ public:
     // operates and runs the functions above
     void operate() 
     {
-
+        // gives the user the option to do a full autodraft
         std::cout << "" << std::endl;
         std::cout << "Enter your Team (name). If you want to autodraft, enter any character that is not already a team name: " << std::endl;
         std::cin >> ownTeam;
         std::cout << "" << std::endl;
 
         std::ifstream draftFile(draftFileName);     // open the chosen draft CSV file
+
+        // error handling if the csv cannot be opened
         if (!draftFile.is_open())
         {
             std::cerr << "Failed to open draft file: " << draftFileName << std::endl;
             return;
         }
-
-        // opens the NFL Top 300 file
-        /*std::ifstream NFL_Top_300("NFL_TOP_300.csv");
-        std::ifstream qb("QB.csv");
-        std::ifstream rb("RB.csv");
-        std::ifstream wr("WR.csv");
-        std::ifstream te("TE.csv");*/
-
-
-        // Verifies that the file can be opened
-        //if (!NFL_Top_300.is_open() || !qb.is_open() || !rb.is_open() || !wr.is_open() || !te.is_open()) {
-        //    std::cerr << "Failed to open." << std::endl;
-        //}
 
 
         // copies the map into the top300
@@ -501,18 +489,10 @@ public:
                 top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
             }
         }
-        draftSimulation(roundLimit);
-        outputTeamPicks();
+        draftSimulation(roundLimit); // calls the draft simulation, the brains of the class to run the draft
+        outputTeamPicks(); // outputs all the teams at the end of the draft
 
-
-        // close files
-        //NFL_Top_300.close();
-        //qb.close();
-        //rb.close();
-        //wr.close();
-        //te.close();
-
-        draftFile.close();
+        draftFile.close(); // closes file
     }
 
 
