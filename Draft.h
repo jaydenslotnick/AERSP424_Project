@@ -43,7 +43,7 @@ private:
     // total estimated salary spent on team 
     double totalSalarySpent = 0.0;
 
-    std::vector<std::pair<std::string, std::vector<std::string>>> top300; // container used to store the players from a csv file
+    std::vector<std::pair<std::string, std::vector<std::string>>> topPlayers; // container used to store the players from a csv file
     std::string line; // variable used to store line of the csv
     std::string ownTeam; // variable for user controlled team
 
@@ -120,7 +120,7 @@ public:
     void displayTopPlayers(int numPlayers) {
         std::cout << "Top " << numPlayers << " players remaining: " << std::endl;
         for (int i = 0; i < numPlayers; ++i) {
-            std::cout << i + 1 << ". " << top300[i].first << ", " << top300[i].second[0] << std::endl;
+            std::cout << i + 1 << ". " << topPlayers[i].first << ", " << topPlayers[i].second[0] << std::endl;
         }
     }
 
@@ -241,7 +241,7 @@ public:
         // Ensure that the position limit is not exceeded
         while (true) 
         {
-            std::string selectedPosition = top300[tempPlayer + indexHelper].second[0]; // sets selected position variable
+            std::string selectedPosition = topPlayers[tempPlayer + indexHelper].second[0]; // sets selected position variable
 
             // checks to see if the position limit is within bounds, will force the user to enter another player if condition is not satisfied
             if (selectedPosition == "QB" && qbLimitContainer[ownTeam] >= qbLimit) {
@@ -269,11 +269,11 @@ public:
             std::cout << "" << std::endl;
         }
 
-        std::cout << playerCount << ". " << ownTeam << " selects: " << top300[tempPlayer + indexHelper].first << ", " << top300[tempPlayer + indexHelper].second[0] << std::endl;  // outputs selected player and position
-        teamPlayerMap[ownTeam][top300[tempPlayer + indexHelper].first] = top300[tempPlayer + indexHelper].second[0]; // updates the team player map
+        std::cout << playerCount << ". " << ownTeam << " selects: " << topPlayers[tempPlayer + indexHelper].first << ", " << topPlayers[tempPlayer + indexHelper].second[0] << std::endl;  // outputs selected player and position
+        teamPlayerMap[ownTeam][topPlayers[tempPlayer + indexHelper].first] = topPlayers[tempPlayer + indexHelper].second[0]; // updates the team player map
         // Update the count of positions taken by the team
-        updatePositionCount(ownTeam, top300[tempPlayer + indexHelper].second[0]); // updates the positon that was taken for each team
-        top300.erase(top300.begin() + tempPlayer + indexHelper); // erases player from ranking container
+        updatePositionCount(ownTeam, topPlayers[tempPlayer + indexHelper].second[0]); // updates the positon that was taken for each team
+        topPlayers.erase(topPlayers.begin() + tempPlayer + indexHelper); // erases player from ranking container
         ++playerCount; // increases player count variable
     }
 
@@ -310,14 +310,14 @@ public:
                 else 
                 {
                     // Use iterators to find the player by rank
-                    auto it = top300.begin();
-                    if (it != top300.end()) {
+                    auto it = topPlayers.begin();
+                    if (it != topPlayers.end()) {
 
                         // adds probability randomization to the draft
                         // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% forth pick
                         pick = pickRandomizer();
 
-                        // advances the top300 to correct pick and chooses the players
+                        // advances the topPlayers to correct pick and chooses the players
                         std::advance(it, pick - 1);
                         
 
@@ -367,7 +367,7 @@ public:
                             updatePositionCount(team, it->second[0]);
                             std::cout << playerCount << ". " << team << " selects: " << it->first << ", " << it->second[0] << std::endl;
                             teamPlayerMap[team][it->first] = it->second[0];   // updates the team map for each team
-                            top300.erase(it); // erases player selected from the top300 container
+                            topPlayers.erase(it); // erases player selected from the topPlayers container
                             ++playerCount;
                         }
 
@@ -472,7 +472,7 @@ public:
         }
 
 
-        // copies the map into the top300
+        // copies the map into the topPlayers
         std::string line;
         while (std::getline(draftFile, line)) {
             std::istringstream iss(line);
@@ -486,7 +486,7 @@ public:
 
             if (columns.size() >= 2) {
                 // Use the first column as the player name and the rest as their information
-                top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
+                topPlayers.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
             }
         }
         draftSimulation(roundLimit); // calls the draft simulation, the brains of the class to run the draft

@@ -13,7 +13,7 @@ class ranking {
 private:
     std::string player;
     int lineNumber = 0;
-    std::vector<std::pair<std::string, std::vector<std::string>>> top300;
+    std::vector<std::pair<std::string, std::vector<std::string>>> topPlayers;
     int rank;
     std::string fileName;
     bool valid = false;
@@ -57,7 +57,7 @@ public:
                 std::ifstream NFL_Top_300("NFL_TOP_300.csv");
 
 
-                // copies the map into the top300
+                // copies the map into the topPlayers
                 std::string line;
                 while (std::getline(NFL_Top_300, line)) {
                     std::istringstream iss(line);
@@ -71,7 +71,7 @@ public:
 
                     if (columns.size() >= 2) {
                         // Use the first column as the player name and the rest as their information
-                        top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
+                        topPlayers.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
                     }
                 }
 
@@ -92,7 +92,7 @@ public:
                 std::ifstream PPR_Top_300("PPR_Top300.csv");
 
 
-                // copies the map into the ppr top300
+                // copies the map into the ppr topPlayers
                 std::string line;
                 while (std::getline(PPR_Top_300, line)) {
                     std::istringstream iss(line);
@@ -106,7 +106,7 @@ public:
 
                     if (columns.size() >= 2) {
                         // Use the first column as the player name and the rest as their information
-                        top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
+                        topPlayers.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
                     }
                 }
 
@@ -129,7 +129,7 @@ public:
                 std::ifstream Half_PPR_Top_300("Half_PPR_Top300.csv");
 
 
-                // copies the map into the half ppr top300
+                // copies the map into the half ppr topPlayers
                 std::string line;
                 while (std::getline(Half_PPR_Top_300, line)) {
                     std::istringstream iss(line);
@@ -143,7 +143,7 @@ public:
 
                     if (columns.size() >= 2) {
                         // Use the first column as the player name and the rest as their information
-                        top300.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
+                        topPlayers.emplace_back(columns[0], std::vector<std::string>(columns.begin() + 1, columns.end()));
                     }
                 }
 
@@ -162,7 +162,7 @@ public:
 
     // Overloading << operator to print ranking information
     friend std::ostream& operator<<(std::ostream& os, const ranking& rank) {
-        for (const auto& pair : rank.top300) {
+        for (const auto& pair : rank.topPlayers) {
             os << "Player: " << pair.first << ", Position: ";
             for (const auto& column : pair.second) {
                 os << column << " ";
