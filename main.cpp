@@ -9,7 +9,7 @@
 
 
 
-int draft::totalDrafts = 0;
+int draft::totalDrafts = 0;		// global variable used to count how many drafts have been completed
 
 int main()
 {
@@ -28,7 +28,7 @@ int main()
 			std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
 			std::cin >> draftType;
 
-			if (std::cin.fail() || draftType < 1 || draftType > 3)
+			if (std::cin.fail() || draftType < 1 || draftType > 3)	// checks if the user input is invalid and makes sure it is either 1, 2, or 3
 			{
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -130,7 +130,7 @@ int main()
 		}
 
 
-		// logic for the PPR draft format
+		// logic for the half PPR draft format
 		else if (draftType == 3)
 		{
 
