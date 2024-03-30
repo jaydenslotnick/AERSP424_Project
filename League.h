@@ -9,9 +9,9 @@
 class League {
 
 protected:
-	int numMembers;
-	std::string leagueName;
-	std::vector<std::string> leagueMembers;
+	int numMembers; // number of members in the league
+	std::string leagueName; // name of the league
+	std::vector<std::string> leagueMembers; // container of leagueMembers
 
 public:
 

@@ -51,7 +51,7 @@ public:
             if (rank == 1)
             {
 
-                std::cout << "\n1. Top 300 Standard Format: \n " << std::endl;
+                std::cout << "\n1. Top Players Standard Format: \n " << std::endl;
 
                 // opens the NFL Top 300 file
                 std::ifstream NFL_Top_300("NFL_TOP_300.csv");
@@ -86,7 +86,7 @@ public:
 
             else if (rank == 2)
             {
-                std::cout << "\n2. Top 300 PPR Format: \n" << std::endl;
+                std::cout << "\n2. Top Players PPR Format: \n" << std::endl;
 
                 // opens the ppr Top 300 file
                 std::ifstream PPR_Top_300("PPR_Top300.csv");
@@ -123,7 +123,7 @@ public:
             else if (rank == 3)
             {
 
-                std::cout << "\n3. Top 300 Half PPR Format: \n" << std::endl;
+                std::cout << "\n3. Top Players Half PPR Format: \n" << std::endl;
 
                 // opens the half ppr Top 300 file
                 std::ifstream Half_PPR_Top_300("Half_PPR_Top300.csv");
