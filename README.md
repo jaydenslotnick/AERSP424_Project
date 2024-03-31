@@ -13,16 +13,16 @@ This section will go over how to clone the repository from github into a local f
 7. Close Git Bash
 
 This section will go over using CMAKE to build the solution code
-7. Open the folder created named "AERSP424_Project"
-8. Create a new folder called "build" contained in the AERSP_424_Project folder
-9. Navigate inside the build folder that you just created 
-10. Right click and choose the option "Open Git Bash here"
-11. Type "cmake .." Note: if CMAKE is not installed on your device, install it before completing this step. 
-12. Navigate to the AERSP_424_Project folder
-13. Copy and paste the following csv files into the build folder: Half_PPR_TopPlayers.csv, NFL_TopPlayers.csv, PPR_TopPlayers.csv
-14. Open the Fantasy_Football_Mock_Draft_Simulator.sln file that is located inside the build folder
-15. Right click on "main" and then click on "Set as Startup Project"
-16. Click on Build, then Build Solution
-17. Click the green run arrow
+8. Open the folder created named "AERSP424_Project"
+9. Create a new folder called "build" contained in the AERSP_424_Project folder
+10. Navigate inside the build folder that you just created 
+11. Right click and choose the option "Open Git Bash here"
+12. Type "cmake .." Note: if CMAKE is not installed on your device, install it before completing this step. 
+13. Navigate to the AERSP_424_Project folder
+14. Copy and paste the following csv files into the build folder: Half_PPR_TopPlayers.csv, NFL_TopPlayers.csv, PPR_TopPlayers.csv
+15. Open the Fantasy_Football_Mock_Draft_Simulator.sln file that is located inside the build folder
+16. Right click on "main" and then click on "Set as Startup Project"
+17. Click on Build, then Build Solution
+18. Click the green run arrow
 
 The code should now be compiled and ready to run!
