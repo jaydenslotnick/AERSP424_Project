@@ -54,7 +54,7 @@ public:
                 std::cout << "\n1. Top Players Standard Format: \n " << std::endl;
 
                 // opens the NFL Top 300 file
-                std::ifstream NFL_Top_300("NFL_TOP_300.csv");
+                std::ifstream NFL_Top_300("NFL_TopPlayers.csv");
 
 
                 // copies the map into the topPlayers
@@ -89,7 +89,7 @@ public:
                 std::cout << "\n2. Top Players PPR Format: \n" << std::endl;
 
                 // opens the ppr Top 300 file
-                std::ifstream PPR_Top_300("PPR_Top300.csv");
+                std::ifstream PPR_Top_300("PPR_TopPlayers.csv");
 
 
                 // copies the map into the ppr topPlayers
@@ -126,7 +126,7 @@ public:
                 std::cout << "\n3. Top Players Half PPR Format: \n" << std::endl;
 
                 // opens the half ppr Top 300 file
-                std::ifstream Half_PPR_Top_300("Half_PPR_Top300.csv");
+                std::ifstream Half_PPR_Top_300("Half_PPR_TopPlayers.csv");
 
 
                 // copies the map into the half ppr topPlayers

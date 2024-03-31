@@ -10,9 +10,6 @@
 #define CUSTOMLEAGUE_H
 
 
-
-
-
 // derived class from the base class league
 class CustomLeague : public League {
 private:
@@ -56,6 +53,7 @@ public:
         bool validLeagueName = false;
         while (!validLeagueName)
         {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Enter league name consisting of only letters and spaces: " << std::endl;
             std::getline(std::cin, leagueName); // Allowing the league name to be multiple words
 

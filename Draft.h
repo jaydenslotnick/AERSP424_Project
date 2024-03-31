@@ -84,13 +84,13 @@ public:
         switch (draftType)
         {
         case 1:
-            draftFileName = "NFL_Top_300.csv";
+            draftFileName = "NFL_TopPlayers.csv";
             break;
         case 2:
-            draftFileName = "PPR_Top300.csv";
+            draftFileName = "PPR_TopPlayers.csv";
             break;
         case 3: 
-            draftFileName = "Half_PPR_Top300.csv";
+            draftFileName = "Half_PPR_TopPlayers.csv";
             break;
         default:
             std::cerr << "Invalid draft type." << std::endl;
