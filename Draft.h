@@ -314,7 +314,7 @@ public:
                     if (it != topPlayers.end()) {
 
                         // adds probability randomization to the draft
-                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% forth pick
+                        // 40% chance to pick top pick, 30% second pick, 20% third pick, 10% fourth pick
                         pick = pickRandomizer();
 
                         // advances the topPlayers to correct pick and chooses the players
@@ -498,5 +498,3 @@ public:
 
 };
 #endif
-
-
