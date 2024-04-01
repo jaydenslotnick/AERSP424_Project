@@ -48,7 +48,7 @@ public:
         {
 
 
-            if (rank == 1)
+            if (rank == 1)      // organizes the standard ranking into a map
             {
 
                 std::cout << "\n1. Top Players Standard Format: \n " << std::endl;
@@ -84,7 +84,7 @@ public:
                 valid = true;
             }
 
-            else if (rank == 2)
+            else if (rank == 2)      // organizes the PPR ranking into a map
             {
                 std::cout << "\n2. Top Players PPR Format: \n" << std::endl;
 
@@ -120,7 +120,7 @@ public:
             }
 
 
-            else if (rank == 3)
+            else if (rank == 3)      // organizes the half PPR ranking into a map
             {
 
                 std::cout << "\n3. Top Players Half PPR Format: \n" << std::endl;
