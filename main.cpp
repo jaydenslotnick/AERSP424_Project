@@ -18,14 +18,14 @@ int main()
 	bool userDraft = false; // error handling if the user enters a invalid input
 	char anotherDraft; // designed for a y/n answer to whether the user wants to complete another draft
 
-
+	std::cout << "Welcome to the Fantasy Football Mock Draft Simulator" << std::endl;
 	
 	while (userDraft == false)
 	{
 
 		// prompts user to choose a draft type out of 3 options and checks the validity of the input
 		do {
-			std::cout << "Choose draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
+			std::cout << "Please choose desired draft format (1 - standard, 2 - PPR, 3 - half PPR): " << std::endl;
 			std::cin >> draftType;
 
 			if (std::cin.fail() || draftType < 1 || draftType > 3)	// checks if the user input is invalid and makes sure it is either 1, 2, or 3
